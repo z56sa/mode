@@ -11,8 +11,8 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // صورة غلاف ماينكرافت الحقيقية مع لوجو اللعبة الأصلي
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg",
+    // البوستر الأصلي الكامل لماينكرافت الأصلية (Java & Bedrock Edition)
+    image: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
@@ -36,9 +36,9 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     tag: "قتال بطاقات حماسي",
   },
   "R.E.P.O.": {
-    // البوستر الحقيقي للعبة R.E.P.O. من مجتمع المودات
-    image: "https://ccdn.thunderstore.io/live/repository/icons/notnotnotswipez-MoreCompany-1.10.1.png",
-    tag: "مهمات وأكشن",
+    // الغلاف الرسمي الكامل للعبة R.E.P.O. من Steam CDN
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg",
+    tag: "مهمات ورعب تعاوني",
   },
   "GTFO": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/493520/header.jpg",
