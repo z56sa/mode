@@ -49,9 +49,6 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     tag: "أعماق البحار وبقاء",
   },
 };
-    tag: "أعماق البحار وبقاء",
-  },
-};
 
 export default async function GamesPage() {
   const db = await getDb();
