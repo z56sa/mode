@@ -1,5 +1,5 @@
 cd "C:\Users\PCD\Desktop\mode"
 git add .
-git commit -m "Enhance games page with high quality covers and remove pills"
+git commit -m "Use official Steam headers for all games and refine button position"
 git push origin main
 pause

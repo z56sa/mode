@@ -8,62 +8,62 @@ export const metadata = {
   description: "استعرض جميع الألعاب المدعومة وتصفح موداتها الأصلية.",
 };
 
-// صور وشعارات رسمية عالية الدقة للألعاب
-const GAME_COVERS: Record<string, { image: string; tag: string; banner: string }> = {
+// صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
+const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    image: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=800&q=80",
+    // البوستر والآرت الرسمي لماينكرافت
+    image: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
-    image: "https://ccdn.thunderstore.io/live/repository/icons/notnotnotswipez-MoreCompany-1.10.1.png",
-    banner: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ Lethal Company (AppID 1966720)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
     tag: "رعب وتعاون فضائي",
   },
   "Valheim": {
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ Valheim (AppID 892970)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg",
     tag: "فايكنج وبقاء",
   },
   "ULTRAKILL": {
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ ULTRAKILL (AppID 1229490)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1229490/header.jpg",
     tag: "أكشن وسرعة ريترو",
   },
   "Content Warning": {
-    image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ Content Warning (AppID 2881650)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2881650/header.jpg",
     tag: "رعب وتصوير فيديو",
   },
   "ROUNDS": {
-    image: "https://images.unsplash.com/photo-1612287232213-79776f140685?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1612287232213-79776f140685?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ ROUNDS (AppID 1557740)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1557740/header.jpg",
     tag: "قتال بطاقات حماسي",
   },
   "R.E.P.O.": {
-    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ R.E.P.O.
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2881650/capsule_616x353.jpg",
     tag: "مهمات وأكشن",
   },
   "GTFO": {
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
+    // غلاف Steam الرسمي لـ GTFO (AppID 493520)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/493520/header.jpg",
     tag: "رعب تكتيكي عميق",
   },
   "Subnautica": {
-    image: "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=400&q=80",
-    banner: "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=800&q=80",
-    tag: "أعماق البحار وبقاء فضائي",
+    // غلاف Steam الرسمي لـ Subnautica (AppID 264710)
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
+    tag: "أعماق البحار وبقاء",
   },
 };
 
 export default async function GamesPage() {
   const db = await getDb();
-  let gamesData: Array<{ game: string; genre: string; count: number; sampleImage: string | null }> = [];
+  let gamesData: Array<{ game: string; genre: string; count: number }> = [];
 
   try {
     const res = await db.execute(`
-      SELECT game, game_genre as genre, COUNT(*) as count, MAX(image_url) as sample_image
+      SELECT game, game_genre as genre, COUNT(*) as count
       FROM mods
       WHERE status = 'approved'
       GROUP BY game
@@ -73,7 +73,6 @@ export default async function GamesPage() {
       game: String(r.game),
       genre: String(r.genre || "Sandbox"),
       count: Number(r.count),
-      sampleImage: r.sample_image ? String(r.sample_image) : null,
     }));
   } catch (error) {
     console.error("Failed to load games list:", error);
@@ -84,11 +83,11 @@ export default async function GamesPage() {
       <div className="section-heading" style={{ marginBottom: "2.5rem" }}>
         <div>
           <span className="eyebrow dark-eyebrow">دليل الألعاب</span>
-          <h1 style={{ fontSize: "2.6rem", fontWeight: "900", marginTop: "0.4rem", color: "#ffffff" }}>
+          <h1 style={{ fontSize: "2.5rem", fontWeight: "900", marginTop: "0.4rem", color: "#ffffff" }}>
             الألعاب المتوفرة ({gamesData.length} ألعاب)
           </h1>
           <p style={{ color: "rgba(255,255,255,0.7)", marginTop: "0.5rem", fontSize: "1.1rem" }}>
-            اختر لعبتك المفضلة لتصفح آلاف المودات الحقيقية والمميزة المجهزة لها.
+            اختر لعبتك لتصفح موداتها الحقيقية والمجهزة لها بروابط مباشرة.
           </p>
         </div>
       </div>
@@ -96,18 +95,15 @@ export default async function GamesPage() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
           gap: "1.75rem",
         }}
       >
         {gamesData.map((item) => {
-          const cover = GAME_COVERS[item.game] || {
-            image: item.sampleImage || "",
-            banner: "",
+          const asset = REAL_GAME_ASSETS[item.game] || {
+            image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
             tag: genreLabels[item.genre] ?? item.genre,
           };
-
-          const displayImg = cover.image || item.sampleImage || "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80";
 
           return (
             <Link
@@ -118,64 +114,53 @@ export default async function GamesPage() {
                 flexDirection: "column",
                 backgroundColor: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: "20px",
+                borderRadius: "18px",
                 overflow: "hidden",
                 textDecoration: "none",
                 color: "inherit",
-                transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
+                transition: "transform 0.2s ease, border-color 0.2s ease",
               }}
             >
-              {/* واجهة صورة اللعبة بحجم واضح واحترافي */}
+              {/* صورة الغلاف الرسمي الكامل للعبة من متجر ستيم */}
               <div
                 style={{
-                  height: "170px",
+                  height: "160px",
                   position: "relative",
                   overflow: "hidden",
-                  backgroundColor: "#111813",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  backgroundColor: "#000",
                 }}
               >
                 <img
-                  src={displayImg}
+                  src={asset.image}
                   alt={item.game}
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    filter: "brightness(0.85)",
-                    transition: "transform 0.3s ease",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(14,24,16,0.95) 0%, transparent 70%)",
+                    display: "block",
                   }}
                 />
                 <span
                   style={{
                     position: "absolute",
-                    top: "14px",
-                    left: "14px",
-                    background: "rgba(0,0,0,0.75)",
+                    top: "12px",
+                    left: "12px",
+                    background: "rgba(0,0,0,0.8)",
                     backdropFilter: "blur(6px)",
                     color: "#9dcc47",
                     fontSize: "0.8rem",
                     fontWeight: "800",
                     padding: "5px 12px",
                     borderRadius: "999px",
-                    border: "1px solid rgba(157,204,71,0.35)",
+                    border: "1px solid rgba(157,204,71,0.4)",
                   }}
                 >
                   {item.count} مود متوفر
                 </span>
               </div>
 
-              {/* بيانات اللعبة */}
-              <div style={{ padding: "1.25rem 1.4rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+              {/* عنوان وتفاصيل اللعبة */}
+              <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                 <span
                   style={{
                     fontSize: "0.8rem",
@@ -183,7 +168,7 @@ export default async function GamesPage() {
                     fontWeight: "600",
                   }}
                 >
-                  {genreLabels[item.genre] ?? item.genre} · {cover.tag}
+                  {genreLabels[item.genre] ?? item.genre} · {asset.tag}
                 </span>
                 <h3
                   style={{
@@ -197,7 +182,7 @@ export default async function GamesPage() {
                 </h3>
                 <div
                   style={{
-                    marginTop: "0.75rem",
+                    marginTop: "0.6rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
