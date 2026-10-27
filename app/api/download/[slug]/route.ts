@@ -84,7 +84,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
     },
   ]);
 
-  return new NextResponse(zipBuffer, {
+  return new NextResponse(new Uint8Array(zipBuffer), {
     status: 200,
     headers: {
       "Content-Type": "application/zip",
