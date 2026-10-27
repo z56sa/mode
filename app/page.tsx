@@ -67,7 +67,22 @@ export default async function Home({ searchParams }: Props) {
                     {!mod.imageUrl && <><span className="art-orb" /><span className="art-letter">{mod.game.slice(0, 1)}</span></>}
                     <span className="art-category">{mod.category}</span>
                   </div>
-                  <div className="mod-card-body"><span className="mod-game">{mod.game} · {genreLabels[mod.gameGenre] ?? mod.gameGenre}</span><h3>{mod.title}</h3><p>{mod.description}</p><div className="mod-card-foot"><span>بواسطة {mod.author}</span><span className="card-arrow">↗</span></div></div>
+                  <div className="mod-card-body">
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
+                      <span className="mod-game">{mod.game} · {genreLabels[mod.gameGenre] ?? mod.gameGenre}</span>
+                      {mod.version && (
+                        <span style={{ fontSize: "0.75rem", padding: "0.15rem 0.5rem", borderRadius: "10px", background: "rgba(16, 185, 129, 0.15)", color: "#10b981", border: "1px solid rgba(16, 185, 129, 0.3)", fontWeight: 600 }}>
+                          v{mod.version}
+                        </span>
+                      )}
+                    </div>
+                    <h3>{mod.title}</h3>
+                    <p>{mod.description}</p>
+                    <div className="mod-card-foot">
+                      <span>بواسطة {mod.author}</span>
+                      <span className="card-arrow">↗</span>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
