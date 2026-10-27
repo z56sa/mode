@@ -55,9 +55,36 @@ async function fetchThunderstoreFeed() {
     console.error("❌ فشل Thunderstore:", res.status);
     return [];
   }
-  const data = await res.json();
+  const raw = await res.json();
+  // API قد يرجع array مباشرة أو object بداخله results
+  const data = Array.isArray(raw) ? raw : (raw?.results ?? raw?.packages ?? []);
   console.log(`✅ تم تحميل ${data.length} حزمة من Thunderstore`);
   return data;
+}
+
+async function fetchThunderstoreCommunity(community, limit) {
+  // fallback: جلب مودات مجتمع محدد عبر API العادي
+  const packages = [];
+  let page = 1;
+  while (packages.length < limit) {
+    try {
+      const res = await fetch(
+        `https://thunderstore.io/c/${community}/api/v1/package/?page=${page}`,
+        { headers: { "User-Agent": "mode-platform/1.0" } }
+      );
+      if (!res.ok) break;
+      const data = await res.json();
+      const results = Array.isArray(data) ? data : (data?.results ?? []);
+      if (!results.length) break;
+      packages.push(...results);
+      if (!data.next) break;
+      page++;
+      await new Promise((r) => setTimeout(r, 400));
+    } catch {
+      break;
+    }
+  }
+  return packages.slice(0, limit);
 }
 
 async function insertMod(data) {
@@ -94,46 +121,73 @@ async function processThunderstore(packages) {
   const counts = {};
   let totalInserted = 0;
 
-  for (const pkg of packages) {
-    const community =
-      pkg.community ||
-      (pkg.package_url ? pkg.package_url.split("/c/")[1]?.split("/")[0] : null);
-    if (!community || !confMap[community]) continue;
+  if (packages.length > 0) {
+    // استخدام الـ experimental feed لو نجح
+    for (const pkg of packages) {
+      const community =
+        pkg.community ||
+        (pkg.package_url ? pkg.package_url.split("/c/")[1]?.split("/")[0] : null);
+      if (!community || !confMap[community]) continue;
 
-    const conf = confMap[community];
-    counts[conf.game] = counts[conf.game] || 0;
-    if (counts[conf.game] >= conf.limit) continue;
+      const conf = confMap[community];
+      counts[conf.game] = counts[conf.game] || 0;
+      if (counts[conf.game] >= conf.limit) continue;
 
-    const latest = pkg.latest || pkg.versions?.[0];
-    if (!latest) continue;
+      const latest = pkg.latest || pkg.versions?.[0];
+      if (!latest) continue;
 
-    const title = (latest.name || pkg.name || "").replace(/_/g, " ").trim();
-    if (!title) continue;
+      const title = (latest.name || pkg.name || "").replace(/_/g, " ").trim();
+      if (!title) continue;
 
-    const slug = `ts-${community}-${pkg.namespace}-${pkg.name}`
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .slice(0, 80);
+      const slug = `ts-${community}-${pkg.namespace}-${pkg.name}`
+        .toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 80);
 
-    const inserted = await insertMod({
-      title,
-      slug,
-      game: conf.game,
-      genre: conf.genre,
-      category: pkg.categories?.[0] || "Mods",
-      description:
-        latest.description ||
-        `${title} - مود مجتمعي رسمي ومشهور للعبة ${conf.game}.`,
-      imageUrl: latest.icon || null,
-      downloadUrl: `/api/download/${slug}`,
-      sourceUrl: pkg.package_url || null,
-      author: pkg.namespace || "Creator",
-      version: latest.version_number || "1.0.0",
-    });
+      const inserted = await insertMod({
+        title, slug, game: conf.game, genre: conf.genre,
+        category: pkg.categories?.[0] || "Mods",
+        description: latest.description || `${title} - مود مجتمعي للعبة ${conf.game}.`,
+        imageUrl: latest.icon || null,
+        downloadUrl: `/api/download/${slug}`,
+        sourceUrl: pkg.package_url || null,
+        author: pkg.namespace || "Creator",
+        version: latest.version_number || "1.0.0",
+      });
 
-    if (inserted) {
-      totalInserted++;
-      counts[conf.game]++;
+      if (inserted) { totalInserted++; counts[conf.game]++; }
+    }
+  } else {
+    // Fallback: جلب كل مجتمع منفرداً
+    console.log("⚠️ الـ Experimental feed فشل — سأجلب كل مجتمع بشكل منفرد...\n");
+    for (const conf of THUNDERSTORE_GAMES) {
+      console.log(`  🔄 جلب ${conf.game} (${conf.community})...`);
+      const pkgs = await fetchThunderstoreCommunity(conf.community, conf.limit);
+      counts[conf.game] = 0;
+
+      for (const pkg of pkgs) {
+        const latest = pkg.latest || pkg.versions?.[0];
+        if (!latest) continue;
+
+        const title = (latest.name || pkg.name || "").replace(/_/g, " ").trim();
+        if (!title) continue;
+
+        const slug = `ts-${conf.community}-${pkg.namespace || "mod"}-${pkg.name || title}`
+          .toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 80);
+
+        const inserted = await insertMod({
+          title, slug, game: conf.game, genre: conf.genre,
+          category: pkg.categories?.[0] || "Mods",
+          description: latest.description || `${title} - مود للعبة ${conf.game}.`,
+          imageUrl: latest.icon || null,
+          downloadUrl: `/api/download/${slug}`,
+          sourceUrl: pkg.package_url || null,
+          author: pkg.namespace || "Creator",
+          version: latest.version_number || "1.0.0",
+        });
+
+        if (inserted) { totalInserted++; counts[conf.game]++; }
+      }
+      console.log(`    ✅ ${counts[conf.game]} مود`);
+      await new Promise((r) => setTimeout(r, 300));
     }
   }
 
@@ -208,12 +262,16 @@ async function processModrinth() {
 async function main() {
   console.log("🚀 بدء إضافة المودات الموسّعة...\n");
 
-  // Thunderstore
+  // Thunderstore (experimental feed أو fallback per-community)
   const packages = await fetchThunderstoreFeed();
-  const tsInserted = packages.length ? await processThunderstore(packages) : 0;
+  // لو الـ feed رجع أقل من 100 حزمة = مش مكتمل، استخدم الـ fallback
+  const tsInserted = await processThunderstore(packages.length >= 100 ? packages : []);
 
-  // Modrinth (مودات إضافية)
-  const mrInserted = await processModrinth();
+  // Modrinth — فقط لو الـ Thunderstore fallback شتغل (لتفادي التكرار)
+  // غيّر إلى true لو تريد إضافة مودات Modrinth مجدداً
+  const RUN_MODRINTH = false;
+  const mrInserted = RUN_MODRINTH ? await processModrinth() : 0;
+  if (!RUN_MODRINTH) console.log("\nℹ️ Modrinth: تم تخطيه (عدّل RUN_MODRINTH=true لإعادة التشغيل)");
 
   // إجمالي
   const total = await db.execute(
