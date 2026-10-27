@@ -77,13 +77,13 @@ export type ModInput = {
   gameGenre: string;
   category: string;
   description: string;
-  imageUrl: string;
-  downloadUrl: string;
+  imageUrl?: string | null;
+  downloadUrl?: string | null;
   downloadFileName?: string | null;
   downloadSize?: number | null;
   sourceUrl?: string | null;
   author: string;
-  version?: string;
+  version?: string | null;
   status?: ModStatus;
   createdBy?: string | null;
   uploadedFileName?: string | null;
