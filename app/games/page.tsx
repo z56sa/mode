@@ -151,7 +151,7 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     tag: "تحدي تسلق فيزيائي أسطوري",
   },
   "Wobbly Life": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1211800/header.jpg",
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1211020/header.jpg",
     tag: "عالم مفتوح وفيزياء مرحة",
   },
   "Ravenfield": {
@@ -236,31 +236,31 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     tag: "مغامرة ومجارف RPG",
   },
   "Grain Rot": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3050990/header.jpg",
+    image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4450620/560fb95ca428a798b7fb5f6b22b36dadb66fc058/capsule_231x87_alt_assets_1.jpg",
     tag: "زراعة وبقاء بيكسل آرت",
   },
   "Slip Skid": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2800560/header.jpg",
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2651350/header.jpg",
     tag: "سباق فيزيائي ممتع",
   },
   "Shift at Midnight": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3149520/header.jpg",
-    tag: "رعب واجهة شاشة سوداء",
+    image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3722330/19c9e6ec567f975b0b4462b8c84c1a38c74adf0d/capsule_231x87.jpg",
+    tag: "رعب ومناوبة ليلية",
   },
   "Romestead": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796080/header.jpg",
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1805320/header.jpg",
     tag: "بناء مدن رومانية استراتيجي",
   },
   "Lucky Shot": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2956380/header.jpg",
+    image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4092940/089015e6dd6569f35944c4cc971c9a8e5d79d42f/capsule_231x87.jpg",
     tag: "لعبة رماية حظية",
   },
   "Lootun": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1946800/header.jpg",
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1960270/header.jpg",
     tag: "RPG عربة لوت وبناء مجموعات",
   },
   "Stonewards": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2997810/header.jpg",
+    image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4502710/c72571ce75a39c4a6847ded74c66580f6b04ff42/capsule_231x87.jpg",
     tag: "اكشن وحمايه بالحجارة",
   },
   "Ancient Dungeon VR": {
