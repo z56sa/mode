@@ -51,10 +51,40 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
     if (response) return response;
   }
 
-  // 2) إذا كان رابط تنزيل مباشر خارجي فعلي وحقيقي، نحاول توجيهه أو توليده
-  const targetFileName = mod.downloadFileName || `${mod.slug}.zip`;
+  // 2) إذا كان للمود رابط تنزيل مباشر فعلي من المصدر (مثل ملف zip أو jar حقيقي) نقوم بعمل Stream مباشر منه ليمر عبر خادمنا
+  if (mod.downloadUrl && (mod.downloadUrl.startsWith("https://") || mod.downloadUrl.startsWith("http://"))) {
+    try {
+      const upstreamRes = await fetch(mod.downloadUrl, {
+        redirect: "follow",
+        headers: { "User-Agent": "mode-platform/1.0" },
+      });
 
-  // توليد أرشيف ZIP فوري وحقيقي يحتوي على حزمة المود وبيانات التثبيت
+      if (upstreamRes.ok && upstreamRes.body) {
+        const streamFileName = mod.downloadFileName || `${mod.slug}.zip`;
+        const contentType = upstreamRes.headers.get("content-type") || "application/octet-stream";
+        const contentLength = upstreamRes.headers.get("content-length");
+
+        const headers: Record<string, string> = {
+          "Content-Type": contentType,
+          "Content-Disposition": contentDisposition(streamFileName),
+          "Cache-Control": "public, max-age=86400",
+        };
+        if (contentLength) {
+          headers["Content-Length"] = contentLength;
+        }
+
+        return new NextResponse(upstreamRes.body as any, {
+          status: 200,
+          headers,
+        });
+      }
+    } catch (err) {
+      console.error("Upstream stream error:", err);
+    }
+  }
+
+  // 3) توليد أرشيف ZIP فوري وحقيقي يحتوي على حزمة المود وبيانات التثبيت كخيار احتياطي
+  const targetFileName = mod.downloadFileName || `${mod.slug}.zip`;
   const modManifest = {
     name: mod.title,
     slug: mod.slug,
