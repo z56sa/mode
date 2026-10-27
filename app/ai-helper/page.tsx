@@ -143,10 +143,10 @@ export default function AiHelperPage() {
                 width: "100%",
                 padding: "0.9rem 1.2rem",
                 borderRadius: "10px",
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                background: "#151c19",
+                border: "1px solid #2e3c35",
                 fontSize: "1rem",
-                color: "inherit"
+                color: "#f0f5f2"
               }}
             />
           </div>
@@ -219,10 +219,10 @@ export default function AiHelperPage() {
                 width: "100%",
                 padding: "0.9rem 1.2rem",
                 borderRadius: "10px",
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                background: "#151c19",
+                border: "1px solid #2e3c35",
                 fontSize: "1rem",
-                color: "inherit"
+                color: "#f0f5f2"
               }}
             />
           </div>
@@ -238,16 +238,17 @@ export default function AiHelperPage() {
                 width: "100%",
                 padding: "0.8rem 1rem",
                 borderRadius: "10px",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                fontSize: "0.95rem",
-                color: "inherit"
+                background: "#151c19",
+                border: "1px solid #2e3c35",
+                fontSize: "1rem",
+                color: "#f0f5f2",
+                colorScheme: "dark"
               }}
             >
-              <option value="unity_bepinex">Unity / BepInEx & Harmony (Valheim, Lethal Company, Bannerlord)</option>
-              <option value="gmod_lua">Garry&apos;s Mod (GLua Scripting)</option>
-              <option value="stardew">Stardew Valley (SMAPI C# API)</option>
-              <option value="minecraft">Minecraft (DataPack / Function)</option>
+              <option value="unity_bepinex" style={{ background: "#151c19", color: "#f0f5f2" }}>Unity / BepInEx & Harmony (Valheim, Lethal Company, Bannerlord)</option>
+              <option value="gmod_lua" style={{ background: "#151c19", color: "#f0f5f2" }}>Garry&apos;s Mod (GLua Scripting)</option>
+              <option value="stardew" style={{ background: "#151c19", color: "#f0f5f2" }}>Stardew Valley (SMAPI C# API)</option>
+              <option value="minecraft" style={{ background: "#151c19", color: "#f0f5f2" }}>Minecraft (DataPack / Function)</option>
             </select>
           </div>
 

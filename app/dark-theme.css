@@ -134,6 +134,26 @@
 :root[data-theme="dark"] .button-outline:hover:not(:disabled){background:#1b241f;color:#eaf7b0}
 :root[data-theme="dark"] .pagination .button-outline{color:#e4ebe5}
 
+/* قوائم وحقول الإدخال في الوضع الليلي */
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea{
+  color-scheme:dark;
+  background-color:#151c19 !important;
+  color:#f0f5f2 !important;
+  border-color:#2e3c35 !important;
+}
+
+:root[data-theme="dark"] select option{
+  background-color:#151c19 !important;
+  color:#f0f5f2 !important;
+}
+
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder{
+  color:#8e9e96 !important;
+}
+
 @media(max-width:600px){
   .header-side{gap:9px}
   .theme-toggle{width:32px;height:32px;font-size:14px}

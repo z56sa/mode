@@ -109,11 +109,11 @@ Fatal Exception: Memory Access Violation 0xC0000005`
             width: "100%",
             padding: "1rem",
             borderRadius: "12px",
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "#151c19",
+            border: "1px solid #2e3c35",
             fontFamily: "monospace",
-            fontSize: "0.9rem",
-            color: "inherit",
+            fontSize: "0.95rem",
+            color: "#f0f5f2",
             direction: "ltr",
             textAlign: "left"
           }}
