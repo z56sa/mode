@@ -267,6 +267,43 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1963370/header.jpg",
     tag: "زنزانة VR بأسلوب Roguelite",
   },
+  // ألعاب مشهورة جديدة
+  "Beat Saber": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/620980/header.jpg",
+    tag: "إيقاع وسيوف ليزر VR",
+  },
+  "Titanfall 2: Northstar": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg",
+    tag: "سيرفرات مخصصة وأكشن سريع",
+  },
+  "Risk of Rain Returns": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1337520/header.jpg",
+    tag: "روغلايك كلاسيكي مُعاد بناؤه",
+  },
+  "Supermarket Together": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2903950/header.jpg",
+    tag: "محاكاة سوبرماركت جماعي",
+  },
+  "The Planet Crafter": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1284190/header.jpg",
+    tag: "استعمار فضائي وبقاء مفتوح",
+  },
+  "Lethal League Blaze": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/553310/header.jpg",
+    tag: "قتال بيسبول حماسي فائق السرعة",
+  },
+  "Chrono Ark": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1188930/header.jpg",
+    tag: "روغلايك بطاقات وتقمّص أدوار",
+  },
+  "Deep Rock Galactic: Survivor": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2321470/header.jpg",
+    tag: "أكشن إطلاق نار وتعدين وبقاء",
+  },
+  "Another Crab's Treasure": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg",
+    tag: "سولزلایک في أعماق المحيط",
+  },
 };
 
 export default async function GamesPage() {
