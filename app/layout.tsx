@@ -18,7 +18,6 @@ export const viewport: Viewport = {
   ],
 };
 
-// يُطبَّق الوضع المحفوظ قبل أول رسم للصفحة حتى لا تظهر وميضًا بالألوان الفاتحة.
 const themeScript = `(function(){try{var t=localStorage.getItem("mode-theme");if(t!=="dark"&&t!=="light"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();`;
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -38,6 +37,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             </Link>
             <nav className="main-nav" aria-label="القائمة الرئيسية">
               <Link href="/">استكشف المودات</Link>
+              <Link href="/games">الألعاب المتوفرة</Link>
               <Link href="/submit">أضف مودًا</Link>
               <Link href="/create-mod">اصنع مودك</Link>
               {isAdmin && <Link className="admin-nav-link" href="/admin">لوحة التحكم</Link>}
@@ -52,8 +52,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         </header>
         <main>{children}</main>
         <footer className="site-footer">
-          <span>mode — مساحة عربية لعشّاق الألعاب والإضافات.</span>
-          <span>المودات وروابط التنزيل مقدّمة من أصحابها.</span>
+          <div className="footer-inner">
+            <p>mode — منصة المودات العربية لمجتمع اللاعبين.</p>
+          </div>
         </footer>
       </body>
     </html>

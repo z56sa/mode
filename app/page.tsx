@@ -50,7 +50,11 @@ export default async function Home({ searchParams }: Props) {
         <div className="section-heading" style={{ marginBottom: "1rem" }}>
           <div>
             <span className="eyebrow dark-eyebrow">ألعاب المنصة</span>
-            <h2>الألعاب المتوفرة ({games.length} لعبة)</h2>
+            <h2>
+              <Link href="/games" style={{ color: "inherit", textDecoration: "none" }}>
+                الألعاب المتوفرة ({games.length} ألعاب) <span style={{ fontSize: "1.1rem", color: "#9dcc47" }}>عرض صفحة الألعاب ↗</span>
+              </Link>
+            </h2>
           </div>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
