@@ -48,6 +48,10 @@
 :root[data-theme="dark"] .mod-card{background:#151c19;border-color:#27322c}
 :root[data-theme="dark"] .mod-card:hover{box-shadow:0 14px 34px #00000059}
 :root[data-theme="dark"] .mod-art{background-color:#1e2a24}
+
+/* روابط استكشاف المودات في الألعاب */
+:root[data-theme="dark"] .section-wrap a span[style*="color: #7da328"],
+:root[data-theme="dark"] .section-wrap a span[style*="color:#7da328"]{color:#b8d676!important}
 :root[data-theme="dark"] .mod-art-1{background-color:#2a2620}
 :root[data-theme="dark"] .mod-art-2{background-color:#1c2a28}
 :root[data-theme="dark"] .mod-art-3{background-color:#2a2220}

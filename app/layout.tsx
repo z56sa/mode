@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f7f4" },
+    { media: "(prefers-color-scheme: light)", color: "#0d1210" },
     { media: "(prefers-color-scheme: dark)", color: "#0d1210" },
   ],
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("mode-theme");if(t!=="dark"&&t!=="light"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("mode-theme");if(t!=="dark"&&t!=="light"){t="dark"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","dark")}})();`;
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const session = await getMemberSession();

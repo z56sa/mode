@@ -7,10 +7,11 @@ const STORAGE_KEY = "mode-theme";
 type Theme = "light" | "dark";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    const current = document.documentElement.getAttribute("data-theme");
+    setTheme(current === "light" ? "light" : "dark");
   }, []);
 
   function toggle() {

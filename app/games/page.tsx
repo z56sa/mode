@@ -295,10 +295,10 @@ export default async function GamesPage() {
       <div className="section-heading" style={{ marginBottom: "2.5rem" }}>
         <div>
           <span className="eyebrow dark-eyebrow">دليل الألعاب</span>
-          <h1 style={{ fontSize: "2.5rem", fontWeight: "900", marginTop: "0.4rem", color: "#ffffff" }}>
+          <h1 style={{ fontSize: "2.5rem", fontWeight: "900", marginTop: "0.4rem", color: "var(--ink)" }}>
             الألعاب المتوفرة ({gamesData.length} ألعاب)
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.7)", marginTop: "0.5rem", fontSize: "1.1rem" }}>
+          <p style={{ color: "var(--muted)", marginTop: "0.5rem", fontSize: "1.1rem" }}>
             اختر لعبتك لتصفح موداتها الحقيقية والمجهزة لها بروابط مباشرة.
           </p>
         </div>
@@ -324,13 +324,13 @@ export default async function GamesPage() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                backgroundColor: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                backgroundColor: "var(--white)",
+                border: "1px solid var(--line)",
                 borderRadius: "18px",
                 overflow: "hidden",
                 textDecoration: "none",
                 color: "inherit",
-                transition: "transform 0.2s ease, border-color 0.2s ease",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
               }}
             >
               {/* صورة الغلاف الرسمي الكامل للعبة */}
@@ -378,8 +378,8 @@ export default async function GamesPage() {
               <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                 <span
                   style={{
-                    fontSize: "0.8rem",
-                    color: "rgba(255,255,255,0.5)",
+                    fontSize: "0.85rem",
+                    color: "var(--muted)",
                     fontWeight: "600",
                   }}
                 >
@@ -389,7 +389,7 @@ export default async function GamesPage() {
                   style={{
                     fontSize: "1.35rem",
                     fontWeight: "800",
-                    color: "#ffffff",
+                    color: "var(--ink)",
                     margin: 0,
                   }}
                 >
@@ -401,13 +401,14 @@ export default async function GamesPage() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    color: "#9dcc47",
+                    color: "var(--lime)",
+                    filter: "contrast(1.2)",
                     fontSize: "0.95rem",
                     fontWeight: "700",
                   }}
                 >
-                  <span>استكشف مودات {item.game}</span>
-                  <span style={{ fontSize: "1.2rem" }}>←</span>
+                  <span style={{ color: "#7da328" }}>استكشف مودات {item.game}</span>
+                  <span style={{ fontSize: "1.2rem", color: "#7da328" }}>←</span>
                 </div>
               </div>
             </Link>
