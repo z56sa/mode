@@ -25,6 +25,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ccdn.thunderstore.io",
       },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
   async headers() {

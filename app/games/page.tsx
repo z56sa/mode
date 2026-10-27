@@ -11,8 +11,8 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // لوجو وشعار ماينكرافت الحقيقي بجودة عالية
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/14/Minecraft_Logo.png",
+    // Minecraft Bedrock Edition - Steam header رسمي
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2521900/header.jpg",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
@@ -47,6 +47,42 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Subnautica": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
     tag: "أعماق البحار وبقاء",
+  },
+  "Palworld": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg",
+    tag: "تقمّص أدوار وبقاء ومخلوقات",
+  },
+  "Risk of Rain 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg",
+    tag: "روغلايك وشخصيات متعددة",
+  },
+  "Titanfall 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg",
+    tag: "أكشن وحركات بهلوانية وسيرفرات مخصصة",
+  },
+  "BONELAB": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1592190/header.jpg",
+    tag: "فيزياء ومحاكاة واقع افتراضي",
+  },
+  "Cities: Skylines II": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/949230/header.jpg",
+    tag: "تخطيط ومحاكاة مدن",
+  },
+  "Outward": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/794260/header.jpg",
+    tag: "مغامرة وبقاء وخيال",
+  },
+  "Dyson Sphere Program": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1366540/header.jpg",
+    tag: "بناء وإستراتيجية فضائية",
+  },
+  "Monster Train": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1102190/header.jpg",
+    tag: "بطاقات وبرج دفاع روغلايك",
+  },
+  "Stacklands": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1948280/header.jpg",
+    tag: "استراتيجية ورق وبقاء",
   },
 };
 
@@ -120,7 +156,7 @@ export default async function GamesPage() {
                   height: "160px",
                   position: "relative",
                   overflow: "hidden",
-                  backgroundColor: item.game === "Minecraft" ? "#1e3814" : "#000",
+                  backgroundColor: "#000",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -130,9 +166,9 @@ export default async function GamesPage() {
                   src={asset.image}
                   alt={item.game}
                   style={{
-                    width: item.game === "Minecraft" ? "80%" : "100%",
-                    height: item.game === "Minecraft" ? "auto" : "100%",
-                    objectFit: item.game === "Minecraft" ? "contain" : "cover",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                     display: "block",
                   }}
                 />
