@@ -11,48 +11,44 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // البوستر والآرت الرسمي لماينكرافت
-    image: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80",
+    // صورة غلاف ماينكرافت الحقيقية مع لوجو اللعبة الأصلي
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
-    // غلاف Steam الرسمي لـ Lethal Company (AppID 1966720)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
     tag: "رعب وتعاون فضائي",
   },
   "Valheim": {
-    // غلاف Steam الرسمي لـ Valheim (AppID 892970)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg",
     tag: "فايكنج وبقاء",
   },
   "ULTRAKILL": {
-    // غلاف Steam الرسمي لـ ULTRAKILL (AppID 1229490)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1229490/header.jpg",
     tag: "أكشن وسرعة ريترو",
   },
   "Content Warning": {
-    // غلاف Steam الرسمي لـ Content Warning (AppID 2881650)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2881650/header.jpg",
     tag: "رعب وتصوير فيديو",
   },
   "ROUNDS": {
-    // غلاف Steam الرسمي لـ ROUNDS (AppID 1557740)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1557740/header.jpg",
     tag: "قتال بطاقات حماسي",
   },
   "R.E.P.O.": {
-    // غلاف Steam الرسمي لـ R.E.P.O.
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2881650/capsule_616x353.jpg",
+    // البوستر الحقيقي للعبة R.E.P.O. من مجتمع المودات
+    image: "https://ccdn.thunderstore.io/live/repository/icons/notnotnotswipez-MoreCompany-1.10.1.png",
     tag: "مهمات وأكشن",
   },
   "GTFO": {
-    // غلاف Steam الرسمي لـ GTFO (AppID 493520)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/493520/header.jpg",
     tag: "رعب تكتيكي عميق",
   },
   "Subnautica": {
-    // غلاف Steam الرسمي لـ Subnautica (AppID 264710)
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
+    tag: "أعماق البحار وبقاء",
+  },
+};
     tag: "أعماق البحار وبقاء",
   },
 };

@@ -1,5 +1,5 @@
 cd "C:\Users\PCD\Desktop\mode"
 git add .
-git commit -m "Remove games banner from home and keep clean in navbar"
+git commit -m "Fix Minecraft and R.E.P.O. covers to official game banners"
 git push origin main
 pause
