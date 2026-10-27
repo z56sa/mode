@@ -45,36 +45,6 @@ export default async function Home({ searchParams }: Props) {
         <div className="hero-index"><span>01</span> / اكتشف، حمّل، واستمتع</div>
       </section>
 
-      {/* قسم التوجيه لصفحة الألعاب مع تنسيق ومحاذاة احترافية على اليمين */}
-      <section className="section-wrap" style={{ paddingTop: "1.5rem", paddingBottom: "1rem" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
-          <div>
-            <span className="eyebrow dark-eyebrow">ألعاب المنصة</span>
-            <h2 style={{ fontSize: "1.8rem", fontWeight: "800", margin: "0.2rem 0 0" }}>الألعاب المتوفرة ({games.length} ألعاب)</h2>
-          </div>
-          <Link
-            href="/games"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.6rem",
-              padding: "0.75rem 1.6rem",
-              backgroundColor: "#9dcc47",
-              color: "#0d1b09",
-              borderRadius: "999px",
-              fontWeight: "800",
-              fontSize: "1rem",
-              textDecoration: "none",
-              boxShadow: "0 4px 16px rgba(157,204,71,0.35)",
-              transition: "transform 0.2s ease",
-            }}
-          >
-            <span>استعراض جميع الألعاب</span>
-            <span aria-hidden="true">←</span>
-          </Link>
-        </div>
-      </section>
-
       <section className="catalog section-wrap" id="catalog">
         <div className="section-heading">
           <div><span className="eyebrow dark-eyebrow">مكتبة المجتمع</span><h2>ماذا ستضيف للعبتك؟</h2></div>
