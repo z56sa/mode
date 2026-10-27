@@ -321,6 +321,10 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg",
     tag: "خيال مظلم ومطاردة وحوش وعالم أسطوري",
   },
+  "The Elder Scrolls V: Skyrim Special Edition": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
+    tag: "عالم مفتوح وخيال أسطوري وسحر وتنانين",
+  },
 };
 
 export default async function GamesPage() {

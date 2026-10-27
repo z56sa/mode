@@ -31,6 +31,8 @@ const GAME_DEFAULT_COVERS: Record<string, string> = {
   "Risk of Rain 2": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg",
   "Beat Saber": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/620980/header.jpg",
   "Titanfall 2: Northstar": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg",
+  "The Witcher 3: Wild Hunt": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg",
+  "The Elder Scrolls V: Skyrim Special Edition": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
 };
 
 export function getModImage(imageUrl: string | null, game: string): string | null {
