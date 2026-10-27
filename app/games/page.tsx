@@ -166,6 +166,107 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/450540/header.jpg",
     tag: "محاكاة أسلحة واقعية VR",
   },
+  // ألعاب مضافة في الموجة الأخيرة
+  "ReSkate": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2883350/header.jpg",
+    tag: "تزلج ومهارات حرة",
+  },
+  "How to Fish": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2977520/header.jpg",
+    tag: "محاكاة صيد سمك",
+  },
+  "Gamble With Your Friends": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2898730/header.jpg",
+    tag: "ألعاب حظ اجتماعية",
+  },
+  "Space Cat Digger": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2842420/header.jpg",
+    tag: "تنقيب فضائي مع قطة",
+  },
+  "Burglin Gnomes": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2933930/header.jpg",
+    tag: "سرقة وأكوام من الأقزام",
+  },
+  "The Spell Brigade": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2904000/header.jpg",
+    tag: "سحر وروغلايك تعاوني",
+  },
+  "Among Us": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/945360/header.jpg",
+    tag: "غموض ومخبر وخداع",
+  },
+  "Holdfast: Nations At War": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/589290/header.jpg",
+    tag: "معارك تاريخية جماعية",
+  },
+  "Pikuniku": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/572890/header.jpg",
+    tag: "مغامرة كوميدية غريبة",
+  },
+  "WEBFISHING": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3146520/header.jpg",
+    tag: "صيد سمك اجتماعي ومريح",
+  },
+  "Dredge": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1562430/header.jpg",
+    tag: "صيد غامض ورعب كلافكرافتي",
+  },
+  "Trombone Champ": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1059990/header.jpg",
+    tag: "إيقاع وموسيقى كوميدية",
+  },
+  "Dead Cells": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/588650/header.jpg",
+    tag: "روغلايك متروفانيا مكثف",
+  },
+  "Muck": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1625450/header.jpg",
+    tag: "بقاء روغلايك مع أصدقاء",
+  },
+  "Blue Prince": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1569580/header.jpg",
+    tag: "ألغاز وغرف عشوائية",
+  },
+  "Graveyard Keeper": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/599140/header.jpg",
+    tag: "محاكاة مقبرة مظلمة وكوميدية",
+  },
+  "Windrose": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2923320/header.jpg",
+    tag: "مغامرة ومجارف RPG",
+  },
+  "Grain Rot": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3050990/header.jpg",
+    tag: "زراعة وبقاء بيكسل آرت",
+  },
+  "Slip Skid": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2800560/header.jpg",
+    tag: "سباق فيزيائي ممتع",
+  },
+  "Shift at Midnight": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3149520/header.jpg",
+    tag: "رعب واجهة شاشة سوداء",
+  },
+  "Romestead": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2796080/header.jpg",
+    tag: "بناء مدن رومانية استراتيجي",
+  },
+  "Lucky Shot": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2956380/header.jpg",
+    tag: "لعبة رماية حظية",
+  },
+  "Lootun": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1946800/header.jpg",
+    tag: "RPG عربة لوت وبناء مجموعات",
+  },
+  "Stonewards": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2997810/header.jpg",
+    tag: "اكشن وحمايه بالحجارة",
+  },
+  "Ancient Dungeon VR": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1963370/header.jpg",
+    tag: "زنزانة VR بأسلوب Roguelite",
+  },
 };
 
 export default async function GamesPage() {
@@ -212,7 +313,7 @@ export default async function GamesPage() {
       >
         {gamesData.map((item) => {
           const asset = REAL_GAME_ASSETS[item.game] || {
-            image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
+            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
             tag: genreLabels[item.genre] ?? item.genre,
           };
 
