@@ -11,8 +11,8 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // البوستر الأصلي الكامل لماينكرافت الأصلية (Java & Bedrock Edition)
-    image: "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80",
+    // البوستر والآرت الرسمي الأساسي للعبة Minecraft الأصلية من موقع minecraft.net الرسمي
+    image: "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Vanilla_bundle_2.png",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
