@@ -8,10 +8,9 @@ export const metadata = {
   description: "استعرض جميع الألعاب المدعومة وتصفح موداتها الأصلية.",
 };
 
-// صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
+// صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // Minecraft Legends — لعبة ماينكرافت رسمية من Mojang على Steam
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1928870/header.jpg",
     tag: "عالم مفتوح وبناء",
   },
@@ -36,7 +35,6 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     tag: "قتال بطاقات حماسي",
   },
   "R.E.P.O.": {
-    // الغلاف الرسمي الكامل للعبة R.E.P.O. من Steam CDN
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg",
     tag: "مهمات ورعب تعاوني",
   },
@@ -83,6 +81,90 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Stacklands": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1948280/header.jpg",
     tag: "استراتيجية ورق وبقاء",
+  },
+  "Balatro": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg",
+    tag: "بوكر وروغلايك وبناء مجموعات",
+  },
+  "Inscryption": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg",
+    tag: "بطاقات غامضة ورعب نفسي",
+  },
+  "V Rising": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1604030/header.jpg",
+    tag: "بقاء ومصاصي دماء وبناء قلاع",
+  },
+  "Sons of the Forest": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1326470/header.jpg",
+    tag: "رعب وبقاء في جزيرة نائية",
+  },
+  "Enter the Gungeon": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/311690/header.jpg",
+    tag: "روغلايك وإطلاق نار كلاسيكي",
+  },
+  "Shadows of Doubt": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/986130/header.jpg",
+    tag: "تحقيق بوليسي وعالم مفتوح ومحاكاة",
+  },
+  "Subnautica: Below Zero": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/848450/header.jpg",
+    tag: "بقاء في أعماق متجمدة",
+  },
+  "BONEWORKS": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/823500/header.jpg",
+    tag: "فيزياء واقع افتراضي تجريبية",
+  },
+  "TaleSpire": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/720620/header.jpg",
+    tag: "طاولة رقمية ومغامرات RPG",
+  },
+  "Bloons TD 6": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg",
+    tag: "دفاع عن البرج واستراتيجية",
+  },
+  "Stick Fight: The Game": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/674940/header.jpg",
+    tag: "قتال فيزيائي ممتع مع الأصدقاء",
+  },
+  "Peglin": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1296610/header.jpg",
+    tag: "روغلايك Pachinko وتكتيك",
+  },
+  "Sun Haven": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1432860/header.jpg",
+    tag: "محاكاة زراعة وعالم سحري",
+  },
+  "Core Keeper": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1621690/header.jpg",
+    tag: "تعدين وبقاء واستكشاف كهوف",
+  },
+  "Crab Game": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1782210/header.jpg",
+    tag: "ألعاب مصغرة جماعية وحماسية",
+  },
+  "Potion Craft": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1210320/header.jpg",
+    tag: "محاكاة خيميائي وصناعة الجرعات",
+  },
+  "Getting Over It": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/240720/header.jpg",
+    tag: "تحدي تسلق فيزيائي أسطوري",
+  },
+  "Wobbly Life": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1211800/header.jpg",
+    tag: "عالم مفتوح وفيزياء مرحة",
+  },
+  "Ravenfield": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/636480/header.jpg",
+    tag: "معارك عسكرية وتكتيك فردي",
+  },
+  "SUPERHOT": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/322500/header.jpg",
+    tag: "الوقت يتحرك فقط عند حركتك",
+  },
+  "H3VR": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/450540/header.jpg",
+    tag: "محاكاة أسلحة واقعية VR",
   },
 };
 
