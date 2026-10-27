@@ -11,8 +11,8 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // Minecraft Bedrock Edition - Steam header رسمي
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2521900/header.jpg",
+    // Minecraft Legends — لعبة ماينكرافت رسمية من Mojang على Steam
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1928870/header.jpg",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {

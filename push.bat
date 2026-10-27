@@ -1,5 +1,5 @@
 cd "C:\Users\PCD\Desktop\mode"
 git add .
-git commit -m "Add 4 new games, fix Minecraft cover, add Strategy genre, expand catalog"
+git commit -m "Fix Minecraft cover image"
 git push origin main
 pause
