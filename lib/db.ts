@@ -363,6 +363,7 @@ export type ModReview = {
   scannedFiles: number;
   omittedFiles: number;
   model?: string;
+  analyzedAt?: string;
   findings: Array<{ title: string; severity: string; detail: string }>;
 };
 
