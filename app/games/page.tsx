@@ -11,8 +11,8 @@ export const metadata = {
 // صور رسمية حقيقية 100% مستخرجة مباشرة من بوسترات Steam و Modrinth الرسمية لكل لعبة
 const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Minecraft": {
-    // البوستر والآرت الرسمي الأساسي للعبة Minecraft الأصلية من موقع minecraft.net الرسمي
-    image: "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Vanilla_bundle_2.png",
+    // لوجو وشعار ماينكرافت الحقيقي بجودة عالية
+    image: "https://upload.wikimedia.org/wikipedia/commons/1/14/Minecraft_Logo.png",
     tag: "عالم مفتوح وبناء",
   },
   "Lethal Company": {
@@ -114,22 +114,25 @@ export default async function GamesPage() {
                 transition: "transform 0.2s ease, border-color 0.2s ease",
               }}
             >
-              {/* صورة الغلاف الرسمي الكامل للعبة من متجر ستيم */}
+              {/* صورة الغلاف الرسمي الكامل للعبة */}
               <div
                 style={{
                   height: "160px",
                   position: "relative",
                   overflow: "hidden",
-                  backgroundColor: "#000",
+                  backgroundColor: item.game === "Minecraft" ? "#1e3814" : "#000",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <img
                   src={asset.image}
                   alt={item.game}
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
+                    width: item.game === "Minecraft" ? "80%" : "100%",
+                    height: item.game === "Minecraft" ? "auto" : "100%",
+                    objectFit: item.game === "Minecraft" ? "contain" : "cover",
                     display: "block",
                   }}
                 />
