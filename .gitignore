@@ -1,0 +1,10 @@
+node_modules/
+.next/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+data/mod-uploads/
+.env.local
+next-env.d.ts
+data/mod-mirrors/
+data/cf-mirror/

@@ -1,0 +1,136 @@
+/* الوضع الليلي — يُطبَّق عبر data-theme="dark" على عنصر html */
+
+.header-side{display:flex;align-items:center;gap:14px}
+.theme-toggle{width:36px;height:36px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:transparent;color:#67716c;cursor:pointer;font-size:15px;line-height:1;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.theme-toggle:hover{background:#eef1e9;color:#7e991e;border-color:#c9d6bb}
+.theme-toggle .icon-sun{display:none}
+:root[data-theme="dark"] .theme-toggle{color:#d9f267;border-color:#33402f}
+:root[data-theme="dark"] .theme-toggle:hover{background:#1b241f;color:#eaf7b0}
+:root[data-theme="dark"] .theme-toggle .icon-moon{display:none}
+:root[data-theme="dark"] .theme-toggle .icon-sun{display:inline}
+
+:root[data-theme="dark"]{
+  --ink:#e4ebe5;
+  --muted:#9aa7a0;
+  --paper:#0d1210;
+  --white:#151c19;
+  --line:#27322c;
+  color-scheme:dark;
+  background-color:#0d1210;
+}
+:root[data-theme="dark"] body{background-color:#0d1210;color:#e4ebe5}
+
+/* الهيدر والتذييل */
+:root[data-theme="dark"] .site-header{background:rgba(21,28,25,.94);border-bottom-color:#27322c}
+:root[data-theme="dark"] .header-side .admin-link{color:#98a49d}
+:root[data-theme="dark"] .header-side .admin-link:hover{color:#d9f267}
+:root[data-theme="dark"] .main-nav{color:#a9b4ad}
+:root[data-theme="dark"] .main-nav a:hover,
+:root[data-theme="dark"] .main-nav .admin-nav-link:hover{color:#d9f267}
+:root[data-theme="dark"] .main-nav .admin-nav-link{color:#cfe093}
+:root[data-theme="dark"] .brand-dot{color:#b6d16a}
+:root[data-theme="dark"] .site-footer{background:#151c19;border-top-color:#27322c;color:#8d9992}
+
+/* البطل */
+:root[data-theme="dark"] .hero{background:#102e26}
+:root[data-theme="dark"] .hero:after{background:radial-gradient(ellipse at 76% 45%,rgba(144,185,103,.12),transparent 35%),linear-gradient(115deg,transparent 35%,rgba(2,14,11,.35))}
+
+/* الفلاتر */
+:root[data-theme="dark"] .filters{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .search-field,
+:root[data-theme="dark"] .select-field{background:#1b241f;border-color:#27322c;color:#8f9c95}
+:root[data-theme="dark"] .search-field input{color:#e4ebe5}
+:root[data-theme="dark"] .search-field input::placeholder{color:#7f8c86}
+:root[data-theme="dark"] .select-field select{color:#cfd9d2}
+:root[data-theme="dark"] .select-field option{background:#151c19;color:#e4ebe5}
+
+/* بطاقات المودات */
+:root[data-theme="dark"] .mod-card{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .mod-card:hover{box-shadow:0 14px 34px #00000059}
+:root[data-theme="dark"] .mod-art{background-color:#1e2a24}
+:root[data-theme="dark"] .mod-art-1{background-color:#2a2620}
+:root[data-theme="dark"] .mod-art-2{background-color:#1c2a28}
+:root[data-theme="dark"] .mod-art-3{background-color:#2a2220}
+:root[data-theme="dark"] .detail-art{background-color:#1e2a24}
+:root[data-theme="dark"] .mod-art.has-icon,
+:root[data-theme="dark"] .detail-art.has-icon{background:radial-gradient(ellipse at 50% 25%,#2b352f 0,#1d2622 36%,#151d19 100%)}
+:root[data-theme="dark"] .art-category{background:rgba(21,28,25,.92);color:#cfe093}
+:root[data-theme="dark"] .mod-game{color:#b7cf7d}
+:root[data-theme="dark"] .mod-card-body>p{color:#9aa7a0}
+:root[data-theme="dark"] .mod-card-foot{border-top-color:#222b26;color:#8d9992}
+:root[data-theme="dark"] .card-arrow{color:#cfe093;border-color:#33402f}
+:root[data-theme="dark"] .mod-image-icon{background:#eef1e7}
+
+/* الحالات الفارغة والترقيم */
+:root[data-theme="dark"] .empty-state{border-color:#2c3731}
+:root[data-theme="dark"] .empty-icon{color:#a9c46a}
+:root[data-theme="dark"] .submit-banner{border-top-color:#27322c}
+
+/* صفحات النماذج */
+:root[data-theme="dark"] .data-form{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .form-grid label{color:#c3cec7}
+:root[data-theme="dark"] .form-grid small{color:#8d9992}
+:root[data-theme="dark"] .form-grid input,
+:root[data-theme="dark"] .form-grid textarea,
+:root[data-theme="dark"] .form-grid select,
+:root[data-theme="dark"] .admin-login input{background:#121a16;border-color:#27322c;color:#e4ebe5}
+:root[data-theme="dark"] .form-grid input::placeholder,
+:root[data-theme="dark"] .form-grid textarea::placeholder{color:#6f7c75}
+:root[data-theme="dark"] .form-submit{border-top-color:#232d27}
+:root[data-theme="dark"] .form-submit p{color:#9dc27a}
+:root[data-theme="dark"] .form-error,
+:root[data-theme="dark"] .review-actions small,
+:root[data-theme="dark"] .delete-mod-error{color:#f0a193}
+:root[data-theme="dark"] .back-link{color:#97a29b}
+:root[data-theme="dark"] .back-link:hover{color:#d9f267}
+
+/* لوحة الإدارة */
+:root[data-theme="dark"] .admin-login,
+:root[data-theme="dark"] .notice-card,
+:root[data-theme="dark"] .pending-card{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .pending-card a{color:#a9c96f}
+:root[data-theme="dark"] .pending-meta{color:#8d9992}
+:root[data-theme="dark"] .notice-card code{background:#1e2722;color:#cfe093}
+:root[data-theme="dark"] .mod-review-result{background:#141c18;border-color:#27322c;color:#c9d3cc}
+:root[data-theme="dark"] .risk-high{background:#2a1c19;border-color:#5a332e}
+:root[data-theme="dark"] .risk-medium{background:#2a2519;border-color:#5a4c2e}
+:root[data-theme="dark"] .mod-review-result small,
+:root[data-theme="dark"] .admin-review-note{color:#98a49d}
+:root[data-theme="dark"] .ai-setup-notice{background:#241f12;border-color:#4a3f22;color:#ddc58d}
+:root[data-theme="dark"] .ai-setup-notice code{background:#2d2717;color:#e7d39a}
+:root[data-theme="dark"] .app-error-card pre{background:#121815;border-color:#27322c;color:#cfd9d2}
+:root[data-theme="dark"] .admin-account{background:#16211b;border-color:#2b3b2f}
+:root[data-theme="dark"] .admin-account strong{color:#b9d19a}
+:root[data-theme="dark"] .admin-account a{color:#a9c96f}
+:root[data-theme="dark"] .account-email{color:#a7b2ab}
+:root[data-theme="dark"] .member-privacy{color:#8d9992}
+
+/* صفحة تفاصيل المود */
+:root[data-theme="dark"] .detail-card{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .detail-description{color:#a7b2ab}
+:root[data-theme="dark"] .detail-meta{color:#8d9992}
+:root[data-theme="dark"] .detail-meta b{color:#dbe4de}
+:root[data-theme="dark"] .external-note{color:#808d86}
+
+/* صفحة «اصنع مودك» */
+:root[data-theme="dark"] .form-heading .dark-eyebrow{color:#b8d27a}
+:root[data-theme="dark"] .create-mod-step{background:#151c19;border-color:#27322c}
+:root[data-theme="dark"] .create-mod-step h2{color:#e4ebe5}
+:root[data-theme="dark"] .create-mod-step p{color:#9aa7a0}
+:root[data-theme="dark"] .create-mod-number{background:#1e2a22;color:#cfe093;border:1px solid #2e3a32}
+:root[data-theme="dark"] .create-mod-callout{background:#16201a;border-color:#2b3b2f}
+:root[data-theme="dark"] .create-mod-callout h2{color:#e4ebe5}
+:root[data-theme="dark"] .create-mod-callout p{color:#9aa7a0}
+:root[data-theme="dark"] .create-mod-callout .button-dark{background:#24483c;color:#eaf7b0;border:1px solid #365a4a}
+:root[data-theme="dark"] .create-mod-callout .button-dark:hover:not(:disabled){background:#2c5747;color:#f2ffc8}
+
+/* أزرار */
+:root[data-theme="dark"] .button-reject{background:#35211e;color:#e7a99f}
+:root[data-theme="dark"] .button-outline{color:#e4ebe5;border-color:#33402f}
+:root[data-theme="dark"] .button-outline:hover:not(:disabled){background:#1b241f;color:#eaf7b0}
+:root[data-theme="dark"] .pagination .button-outline{color:#e4ebe5}
+
+@media(max-width:600px){
+  .header-side{gap:9px}
+  .theme-toggle{width:32px;height:32px;font-size:14px}
+}

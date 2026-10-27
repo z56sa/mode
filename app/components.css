@@ -1,0 +1,25 @@
+/* أنماط لوحة استضافة الملفات في صفحة المود (للمسؤول فقط) */
+
+.mirror-panel{width:100%;margin-top:18px;padding:16px 17px;border:1px dashed #cbd6c1;border-radius:9px;background:#f8faf4}
+.mirror-head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between;font-size:12px}
+.mirror-head strong{font-size:13px}
+.mirror-status{color:#8c958e;font-size:10px;direction:ltr;text-align:left;word-break:break-word}
+.mirror-status.hosted{color:#4c7a3c;font-weight:600}
+.mirror-hint{font-size:11px;color:#78837b;line-height:1.8;margin:7px 0 12px}
+.mirror-actions{display:flex;flex-wrap:wrap;gap:8px}
+.mirror-actions .button{min-height:38px;font-size:11px;padding:0 14px}
+.mirror-progress{height:6px;border-radius:99px;background:#e6ebdf;overflow:hidden;margin-top:10px}
+.mirror-progress span{display:block;height:100%;background:#8ea84e;transition:width .16s ease}
+.mirror-progress.indeterminate span{width:35%;animation:mirror-slide 1.2s ease-in-out infinite}
+@keyframes mirror-slide{0%{transform:translateX(120%)}100%{transform:translateX(-320%)}}
+.mirror-note{display:block;margin-top:7px;font-size:10px;color:#8c958e}
+.mirror-notice{display:block;margin-top:8px;font-size:11px;color:#4c7a3c;font-weight:600}
+.mirror-error{display:block;margin-top:8px}
+
+:root[data-theme="dark"] .mirror-panel{background:#131c17;border-color:#2b3a2c}
+:root[data-theme="dark"] .mirror-hint{color:#9aa7a0}
+:root[data-theme="dark"] .mirror-status{color:#8d9992}
+:root[data-theme="dark"] .mirror-status.hosted{color:#b9d19a}
+:root[data-theme="dark"] .mirror-note{color:#8d9992}
+:root[data-theme="dark"] .mirror-notice{color:#b9d19a}
+:root[data-theme="dark"] .mirror-progress{background:#1f2a22}
