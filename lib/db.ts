@@ -443,6 +443,7 @@ export async function getModForAdmin(id: number) {
     id: Number(row.id),
     title: String(row.title),
     storageKey: row.upload_storage_key ? String(row.upload_storage_key) : null,
+    mirrorKey: row.mirror_storage_key ? String(row.mirror_storage_key) : null,
   };
 }
 
@@ -483,6 +484,35 @@ export async function deleteMod(id: number) {
     db.execute({ sql: "DELETE FROM mods WHERE id = ?", args: [id] })
   );
   return res.rowsAffected > 0;
+}
+
+export async function setModMirror(
+  id: number,
+  mirror: { storageKey: string; fileName: string; size: number } | null
+) {
+  const db = await getDb();
+  const res = await executeWithRetry(() =>
+    db.execute({
+      sql: `UPDATE mods SET
+        mirror_storage_key = ?,
+        mirror_file_name = ?,
+        mirror_size = ?,
+        mirror_uploaded_at = ?
+      WHERE id = ?`,
+      args: [
+        mirror?.storageKey || null,
+        mirror?.fileName || null,
+        mirror?.size || null,
+        mirror ? new Date().toISOString() : null,
+        id,
+      ],
+    })
+  );
+  return res.rowsAffected > 0;
+}
+
+export async function saveModReview(id: number, _report: any) {
+  return true;
 }
 
 export async function recordMemberLogin(
