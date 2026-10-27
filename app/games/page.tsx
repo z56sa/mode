@@ -309,10 +309,6 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg",
     tag: "حروب تكتيكية وقرون وسطى وحروب كبرى",
   },
-  "Grand Theft Auto V": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg",
-    tag: "عالم مفتوح وأكشن وسيارات وجريمة",
-  },
   "Cyberpunk 2077": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg",
     tag: "عالم مستقبلي وسايبربانك وتقمّص أدوار",

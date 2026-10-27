@@ -21,6 +21,23 @@ export const genreLabels: Record<string, string> = {
   Roguelike: "روغلايك",
 };
 
+const GAME_DEFAULT_COVERS: Record<string, string> = {
+  "Mount & Blade II: Bannerlord": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg",
+  "Cyberpunk 2077": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg",
+  "Stardew Valley": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",
+  "Minecraft": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1928870/header.jpg",
+  "Lethal Company": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
+  "Valheim": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg",
+  "Risk of Rain 2": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg",
+  "Beat Saber": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/620980/header.jpg",
+  "Titanfall 2: Northstar": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg",
+};
+
+export function getModImage(imageUrl: string | null, game: string): string | null {
+  if (imageUrl && imageUrl.trim()) return imageUrl;
+  return GAME_DEFAULT_COVERS[game] || null;
+}
+
 export function isGalleryImage(imageUrl: string | null) {
   return Boolean(
     imageUrl &&
@@ -212,25 +229,29 @@ export async function getPublishedMods(filters: CatalogFilters = {}): Promise<Ga
     const db = await getDb();
     const res = await executeWithRetry(() => db.execute({ sql, args }), 2, 500);
 
-    return res.rows.map((row: any) => ({
-      id: Number(row.id),
-      title: String(row.title),
-      slug: String(row.slug),
-      game: String(row.game),
-      gameGenre: String(row.game_genre || "Sandbox"),
-      category: String(row.category),
-      description: String(row.description),
-      imageUrl: row.image_url ? String(row.image_url) : null,
-      downloadUrl: String(row.download_url),
-      downloadFileName: row.download_file_name ? String(row.download_file_name) : null,
-      downloadSize: row.download_size ? Number(row.download_size) : null,
-      mirrorFileName: row.mirror_file_name ? String(row.mirror_file_name) : null,
-      mirrorSize: row.mirror_size ? Number(row.mirror_size) : null,
-      sourceUrl: row.source_url ? String(row.source_url) : null,
-      author: String(row.author || "المجتمع"),
-      version: row.version ? String(row.version) : null,
-      createdAt: String(row.created_at),
-    }));
+    return res.rows.map((row: any) => {
+      const game = String(row.game);
+      const rawImage = row.image_url ? String(row.image_url) : null;
+      return {
+        id: Number(row.id),
+        title: String(row.title),
+        slug: String(row.slug),
+        game,
+        gameGenre: String(row.game_genre || "Sandbox"),
+        category: String(row.category),
+        description: String(row.description),
+        imageUrl: getModImage(rawImage, game),
+        downloadUrl: String(row.download_url),
+        downloadFileName: row.download_file_name ? String(row.download_file_name) : null,
+        downloadSize: row.download_size ? Number(row.download_size) : null,
+        mirrorFileName: row.mirror_file_name ? String(row.mirror_file_name) : null,
+        mirrorSize: row.mirror_size ? Number(row.mirror_size) : null,
+        sourceUrl: row.source_url ? String(row.source_url) : null,
+        author: String(row.author || "المجتمع"),
+        version: row.version ? String(row.version) : null,
+        createdAt: String(row.created_at),
+      };
+    });
   } catch (error) {
     console.error("Turso error in getPublishedMods:", error);
     return [];
@@ -339,7 +360,7 @@ export async function getModBySlug(slug: string): Promise<GameMod | null> {
     gameGenre: String(row.game_genre || "Sandbox"),
     category: String(row.category),
     description: String(row.description),
-    imageUrl: row.image_url ? String(row.image_url) : null,
+    imageUrl: getModImage(row.image_url ? String(row.image_url) : null, String(row.game)),
     downloadUrl: String(row.download_url),
     downloadFileName: row.download_file_name ? String(row.download_file_name) : null,
     downloadSize: row.download_size ? Number(row.download_size) : null,
@@ -394,7 +415,7 @@ export async function getPendingMods(): Promise<Array<SubmittedMod & { review?: 
       gameGenre: String(row.game_genre || "Sandbox"),
       category: String(row.category),
       description: String(row.description),
-      imageUrl: row.image_url ? String(row.image_url) : null,
+      imageUrl: getModImage(row.image_url ? String(row.image_url) : null, String(row.game)),
       downloadUrl: String(row.download_url),
       downloadFileName: row.download_file_name ? String(row.download_file_name) : null,
       downloadSize: row.download_size ? Number(row.download_size) : null,
