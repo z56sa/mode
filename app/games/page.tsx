@@ -325,6 +325,34 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
     tag: "عالم مفتوح وخيال أسطوري وسحر وتنانين",
   },
+  "Garry's Mod": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/4000/header.jpg",
+    tag: "ساندبوكس وفيزياء وإبداع مطلق",
+  },
+  "Left 4 Dead 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/550/header.jpg",
+    tag: "تصويب ورعب وبقاء زومبي تعاوني",
+  },
+  "Project Zomboid": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg",
+    tag: "بقاء واقعي فائق الصعوبة وعالم زومبي",
+  },
+  "Terraria": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg",
+    tag: "مغامرات وبناء وقتال زعماء أسطوري 2D",
+  },
+  "RimWorld": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg",
+    tag: "محاكاة مستعمرة وقصص ذكاء اصطناعي وبقاء",
+  },
+  "Euro Truck Simulator 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
+    tag: "محاكاة شاحنات وطرق سريعة وواقعية القيادة",
+  },
+  "Cities: Skylines": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/255710/header.jpg",
+    tag: "بناء وتخطيط مدن متكامل وإدارة مرور",
+  },
 };
 
 export default async function GamesPage() {
