@@ -45,66 +45,33 @@ export default async function Home({ searchParams }: Props) {
         <div className="hero-index"><span>01</span> / اكتشف، حمّل، واستمتع</div>
       </section>
 
-      {/* شريط الألعاب التي نوفر لها مودات */}
-      <section className="section-wrap" style={{ paddingTop: "1rem", paddingBottom: "1.5rem" }}>
-        <div className="section-heading" style={{ marginBottom: "1rem" }}>
+      {/* قسم الألعاب المتوفرة - تم تصحيحه ليكون زراً واضحاً لصفحة الألعاب */}
+      <section className="section-wrap" style={{ paddingTop: "1.5rem", paddingBottom: "1.5rem" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <span className="eyebrow dark-eyebrow">ألعاب المنصة</span>
-            <h2>
-              <Link href="/games" style={{ color: "inherit", textDecoration: "none" }}>
-                الألعاب المتوفرة ({games.length} ألعاب) <span style={{ fontSize: "1.1rem", color: "#9dcc47" }}>عرض صفحة الألعاب ↗</span>
-              </Link>
-            </h2>
+            <h2 style={{ fontSize: "1.8rem", fontWeight: "800", margin: "0.2rem 0 0" }}>الألعاب المتوفرة ({games.length} ألعاب)</h2>
           </div>
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
           <Link
-            href="/#catalog"
+            href="/games"
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.4rem",
-              padding: "0.5rem 1rem",
+              gap: "0.5rem",
+              padding: "0.75rem 1.4rem",
+              backgroundColor: "#9dcc47",
+              color: "#0d1b09",
               borderRadius: "999px",
-              fontSize: "0.9rem",
-              fontWeight: "600",
+              fontWeight: "700",
+              fontSize: "0.95rem",
               textDecoration: "none",
-              border: !filters.game ? "2px solid #527926" : "1px solid rgba(255,255,255,0.15)",
-              backgroundColor: !filters.game ? "#9dcc47" : "rgba(255,255,255,0.06)",
-              color: !filters.game ? "#0e1f06" : "#ffffff",
-              transition: "all 0.2s ease",
+              boxShadow: "0 4px 14px rgba(157,204,71,0.3)",
+              transition: "transform 0.2s ease",
             }}
           >
-            <span>🎮</span>
-            <span>كل الألعاب</span>
+            <span>استعرض كل كروت الألعاب</span>
+            <span>←</span>
           </Link>
-          {games.map((g) => {
-            const isSelected = filters.game === g;
-            return (
-              <Link
-                key={g}
-                href={isSelected ? "/#catalog" : `/?game=${encodeURIComponent(g)}#catalog`}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "999px",
-                  fontSize: "0.9rem",
-                  fontWeight: "600",
-                  textDecoration: "none",
-                  border: isSelected ? "2px solid #527926" : "1px solid rgba(255,255,255,0.15)",
-                  backgroundColor: isSelected ? "#9dcc47" : "rgba(255,255,255,0.06)",
-                  color: isSelected ? "#0e1f06" : "#ffffff",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                <span>🎲</span>
-                <span>{g}</span>
-                {isSelected && <span>✓</span>}
-              </Link>
-            );
-          })}
         </div>
       </section>
 
