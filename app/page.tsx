@@ -47,8 +47,20 @@ export default async function Home({ searchParams }: Props) {
 
       <section className="catalog section-wrap" id="catalog">
         <div className="section-heading">
-          <div><span className="eyebrow dark-eyebrow">مكتبة المجتمع</span><h2>ماذا ستضيف للعبتك؟</h2></div>
-          <span className="result-count">{totalMods} مود</span>
+          <div>
+            <span className="eyebrow dark-eyebrow">مكتبة المجتمع الذكية</span>
+            <h2>ماذا ستضيف للعبتك؟</h2>
+          </div>
+          <div style={{ display: "flex", gap: "0.8rem", alignItems: "center" }}>
+            <Link
+              href="/ai-helper"
+              className="button button-outline"
+              style={{ fontSize: "0.85rem", padding: "0.4rem 0.9rem", borderColor: "rgba(16, 185, 129, 0.4)", color: "#10b981" }}
+            >
+              🤖 البحث الذكي بالفكرة
+            </Link>
+            <span className="result-count">{totalMods} مود</span>
+          </div>
         </div>
         <form className="filters" action="/" method="get">
           <label className="search-field"><span aria-hidden="true">⌕</span><input type="search" name="q" defaultValue={filters.q} placeholder="ابحث عن مود أو لعبة..." /></label>

@@ -4,10 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 
 interface MatchedMod {
+  id?: number;
   title: string;
   game: string;
   slug: string;
-  why: string;
+  description?: string;
+  category?: string;
+  imageUrl?: string | null;
+  matchReason?: string;
+  why?: string;
 }
 
 interface GeneratedResult {
@@ -28,8 +33,10 @@ export default function AiHelperPage() {
   const [searching, setSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<{
     category: string;
-    relevanceExplanation: string;
-    suggestedMods: MatchedMod[];
+    explanation?: string;
+    relevanceExplanation?: string;
+    suggestedMods?: MatchedMod[];
+    mods?: MatchedMod[];
   } | null>(null);
 
   // Code generator state
@@ -161,46 +168,62 @@ export default function AiHelperPage() {
             {searching ? "جاري البحث في قاعدة المودات..." : "ابحث بالفكرة ↗"}
           </button>
 
-          {searchResult && (
-            <div style={{ marginTop: "1.5rem" }}>
-              <p style={{ opacity: 0.9, marginBottom: "1rem", fontSize: "1.1rem" }}>
-                {searchResult.relevanceExplanation}
-              </p>
+          {searchResult && (() => {
+            const modList = searchResult.mods || searchResult.suggestedMods || [];
+            const explanationText = searchResult.explanation || searchResult.relevanceExplanation;
+            return (
+              <div style={{ marginTop: "1.5rem" }}>
+                <p style={{ opacity: 0.9, marginBottom: "1rem", fontSize: "1.1rem" }}>
+                  {explanationText}
+                </p>
 
-              {searchResult.suggestedMods.length > 0 ? (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
-                  {searchResult.suggestedMods.map((mod, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        padding: "1.2rem",
-                        borderRadius: "12px",
-                        background: "rgba(255,255,255,0.03)",
-                        border: "1px solid rgba(255,255,255,0.1)"
-                      }}
-                    >
-                      <span style={{ fontSize: "0.8rem", opacity: 0.7 }}>{mod.game}</span>
-                      <h3 style={{ margin: "0.3rem 0 0.5rem", fontSize: "1.2rem" }}>{mod.title}</h3>
-                      <p style={{ fontSize: "0.9rem", opacity: 0.85, lineHeight: 1.5, marginBottom: "1rem" }}>
-                        {mod.why}
-                      </p>
-                      <Link
-                        href={`/mods/${encodeURIComponent(mod.slug)}`}
-                        className="button button-outline"
-                        style={{ fontSize: "0.85rem", padding: "0.3rem 0.8rem", width: "100%", textAlign: "center" }}
+                {modList.length > 0 ? (
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
+                    {modList.map((mod, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          padding: "1.2rem",
+                          borderRadius: "12px",
+                          background: "#151c19",
+                          border: "1px solid #2e3c35",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between"
+                        }}
                       >
-                        عرض صفحة المود والتحميل ↗
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div style={{ padding: "1.5rem", borderRadius: "10px", background: "rgba(255,255,255,0.02)", textAlign: "center" }}>
-                  <p>جرب كلمات مفتاحية مثل: <b>أسلحة</b>، <b>مركبات</b>، <b>طيران</b>، <b>سحر</b>، <b>تخزين</b>، <b>غش وفلوس</b>.</p>
-                </div>
-              )}
-            </div>
-          )}
+                        <div>
+                          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
+                            <span style={{ fontSize: "0.8rem", opacity: 0.7 }}>{mod.game}</span>
+                            {mod.category && (
+                              <span style={{ fontSize: "0.75rem", padding: "0.1rem 0.5rem", borderRadius: "8px", background: "rgba(255,255,255,0.08)" }}>
+                                {mod.category}
+                              </span>
+                            )}
+                          </div>
+                          <h3 style={{ margin: "0.2rem 0 0.5rem", fontSize: "1.15rem", color: "#f0f5f2" }}>{mod.title}</h3>
+                          <p style={{ fontSize: "0.85rem", opacity: 0.85, lineHeight: 1.5, marginBottom: "0.8rem" }}>
+                            {mod.matchReason || mod.why || mod.description || "مود متوافق مع نية البحث"}
+                          </p>
+                        </div>
+                        <Link
+                          href={`/mods/${encodeURIComponent(mod.slug)}`}
+                          className="button button-outline"
+                          style={{ fontSize: "0.85rem", padding: "0.4rem 0.8rem", width: "100%", textAlign: "center", marginTop: "0.5rem" }}
+                        >
+                          عرض صفحة المود والتحميل ↗
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ padding: "1.5rem", borderRadius: "10px", background: "#151c19", border: "1px solid #2e3c35", textAlign: "center" }}>
+                    <p>جرب كلمات مفتاحية مثل: <b>طيارة وسفينة</b>، <b>أسلحة</b>، <b>مركبات وسيارات</b>، <b>سحر</b>، <b>ترتيب صناديق</b>، <b>غش وفلوس</b>، <b>جرافيكس وطقس</b>.</p>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
       )}
 

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchModsByIdea, generateModCode } from "@/lib/ai-mod-helper";
+import { generateModCode } from "@/lib/ai-mod-helper";
+import { smartSearchMods } from "@/lib/smart-search";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +12,7 @@ export async function POST(req: NextRequest) {
       if (!idea.trim()) {
         return NextResponse.json({ error: "اكتب الفكرة التي تبحث عنها." }, { status: 400 });
       }
-      const match = searchModsByIdea(idea);
+      const match = await smartSearchMods(idea, 24);
       return NextResponse.json({ success: true, match });
     }
 

@@ -199,9 +199,39 @@ export async function getPublishedMods(filters: CatalogFilters = {}): Promise<Ga
   const args: any[] = [];
 
   if (filters.search) {
-    conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ?)");
-    const q = `%${filters.search}%`;
-    args.push(q, q, q);
+    const rawSearch = filters.search.trim().toLowerCase();
+    
+    // Check if the search contains Arabic intent/concept words
+    const conceptMap: Record<string, string[]> = {
+      fly: ["طير", "يطير", "طيران", "طياره", "سفينه", "سفينة", "فضاء", "فلاي", "مركبه", "مركبة", "سياره", "سيارة"],
+      weapon: ["سلاح", "اسلحه", "أسلحة", "مسدس", "فرد", "رشاش", "بندقية", "طلقات", "رصاص", "قتال", "حرب"],
+      magic: ["سحر", "شعوذه", "شعوذة", "طاقه", "طاقة", "تعاويذ", "تعويذة", "قدرات"],
+      storage: ["صناديق", "صندوق", "ترتيب", "تخزين", "مخزن", "تنظيم", "اغراض", "أغراض", "انفنتوري"],
+      cheat: ["غش", "فلوس", "ذهب", "شيت", "تريلر", "منيو", "خلود", "دم لا نهائي"],
+      map: ["خريطه", "خريطة", "ماب", "ميني ماب", "رادار"],
+      weather: ["جرافيكس", "جرافيك", "رسوم", "رسومات", "واقعيه", "واقعية", "طقس", "دقة", "4k"],
+      sound: ["اصوات", "أصوات", "صوت", "موسيقى", "اغاني", "أغاني", "ساوند"],
+      survival: ["وحوش", "اعداء", "أعداء", "زومبي", "بقاء", "رعب"]
+    };
+
+    let matchedEnglishKey: string | null = null;
+    for (const [enKey, arWords] of Object.entries(conceptMap)) {
+      if (arWords.some(w => rawSearch.includes(w))) {
+        matchedEnglishKey = enKey;
+        break;
+      }
+    }
+
+    if (matchedEnglishKey) {
+      conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ? OR title LIKE ? OR description LIKE ? OR category LIKE ?)");
+      const q = `%${filters.search}%`;
+      const eq = `%${matchedEnglishKey}%`;
+      args.push(q, q, q, eq, eq, eq);
+    } else {
+      conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ?)");
+      const q = `%${filters.search}%`;
+      args.push(q, q, q);
+    }
   }
 
   if (filters.game) {
@@ -265,9 +295,39 @@ export async function getPublishedModCount(filters: CatalogFilters = {}): Promis
   const args: any[] = [];
 
   if (filters.search) {
-    conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ?)");
-    const q = `%${filters.search}%`;
-    args.push(q, q, q);
+    const rawSearch = filters.search.trim().toLowerCase();
+    
+    // Check if the search contains Arabic intent/concept words
+    const conceptMap: Record<string, string[]> = {
+      fly: ["طير", "يطير", "طيران", "طياره", "سفينه", "سفينة", "فضاء", "فلاي", "مركبه", "مركبة", "سياره", "سيارة"],
+      weapon: ["سلاح", "اسلحه", "أسلحة", "مسدس", "فرد", "رشاش", "بندقية", "طلقات", "رصاص", "قتال", "حرب"],
+      magic: ["سحر", "شعوذه", "شعوذة", "طاقه", "طاقة", "تعاويذ", "تعويذة", "قدرات"],
+      storage: ["صناديق", "صندوق", "ترتيب", "تخزين", "مخزن", "تنظيم", "اغراض", "أغراض", "انفنتوري"],
+      cheat: ["غش", "فلوس", "ذهب", "شيت", "تريلر", "منيو", "خلود", "دم لا نهائي"],
+      map: ["خريطه", "خريطة", "ماب", "ميني ماب", "رادار"],
+      weather: ["جرافيكس", "جرافيك", "رسوم", "رسومات", "واقعيه", "واقعية", "طقس", "دقة", "4k"],
+      sound: ["اصوات", "أصوات", "صوت", "موسيقى", "اغاني", "أغاني", "ساوند"],
+      survival: ["وحوش", "اعداء", "أعداء", "زومبي", "بقاء", "رعب"]
+    };
+
+    let matchedEnglishKey: string | null = null;
+    for (const [enKey, arWords] of Object.entries(conceptMap)) {
+      if (arWords.some(w => rawSearch.includes(w))) {
+        matchedEnglishKey = enKey;
+        break;
+      }
+    }
+
+    if (matchedEnglishKey) {
+      conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ? OR title LIKE ? OR description LIKE ? OR category LIKE ?)");
+      const q = `%${filters.search}%`;
+      const eq = `%${matchedEnglishKey}%`;
+      args.push(q, q, q, eq, eq, eq);
+    } else {
+      conditions.push("(title LIKE ? OR description LIKE ? OR game LIKE ?)");
+      const q = `%${filters.search}%`;
+      args.push(q, q, q);
+    }
   }
 
   if (filters.game) {
