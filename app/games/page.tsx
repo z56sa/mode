@@ -118,6 +118,30 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/720620/header.jpg",
     tag: "طاولة رقمية ومغامرات RPG",
   },
+  "Bopl Battle": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1686940/header.jpg",
+    tag: "قتال كوميدي وفيزياء مرحة",
+  },
+  "Voices of the Void": {
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    tag: "رعب فلكي ومحاكاة إشارات",
+  },
+  "Across the Obelisk": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1385380/header.jpg",
+    tag: "روغلايك وبناء بطاقات تعاوني",
+  },
+  "HARD BULLET": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1294760/header.jpg",
+    tag: "أكشن واقع افتراضي وقتال دموي",
+  },
+  "20 Minutes Till Dawn": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1966900/header.jpg",
+    tag: "صمود وأكشن روجلايت وإطلاق نار",
+  },
+  "R5Reloaded": {
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
+    tag: "أكشن إطلاق نار ومنافسات حركية",
+  },
   "Bloons TD 6": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg",
     tag: "دفاع عن البرج واستراتيجية",
