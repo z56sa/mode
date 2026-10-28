@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { genreLabels, getCatalogOptions, getPublishedModCount, getPublishedMods, isGalleryImage } from "@/lib/db";
+import PaginationJump from "./pagination-jump";
 
 type Props = { searchParams: Promise<{ q?: string; game?: string; category?: string; genre?: string; page?: string }> };
 
@@ -103,7 +104,7 @@ export default async function Home({ searchParams }: Props) {
                 {currentPage > 1
                   ? <Link className="button button-outline" href={pageHref(currentPage - 1, filters)}>السابق</Link>
                   : <span className="button button-outline pagination-disabled" aria-disabled="true">السابق</span>}
-                <span className="pagination-status">صفحة {currentPage} من {pageCount}</span>
+                <PaginationJump currentPage={currentPage} pageCount={pageCount} filters={filters} />
                 {currentPage < pageCount
                   ? <Link className="button button-outline" href={pageHref(currentPage + 1, filters)}>التالي</Link>
                   : <span className="button button-outline pagination-disabled" aria-disabled="true">التالي</span>}
