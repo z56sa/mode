@@ -353,6 +353,30 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/255710/header.jpg",
     tag: "بناء وتخطيط مدن متكامل وإدارة مرور",
   },
+  "Elden Ring": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg",
+    tag: "سولزلایک وتقمّص أدوار وعالم مفتوح أسطوري",
+  },
+  "Baldur's Gate 3": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg",
+    tag: "تقمّص أدوار وقرارات وتكتيك عميق D&D",
+  },
+  "Fallout 4": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/377160/header.jpg",
+    tag: "عالم ما بعد الكارثة وبناء مستوطنات واستكشاف",
+  },
+  "Red Dead Redemption 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg",
+    tag: "غرب أمريكي ملحمي وعالم مفتوح فائق الواقعية",
+  },
+  "Kenshi": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg",
+    tag: "بقاء وساندبوكس وحرية مطلقة في عالم قاسٍ",
+  },
+  "Barotrauma": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/602960/header.jpg",
+    tag: "رعب أعماق محيط قمر أوروبا ومحاكاة غواصة",
+  },
 };
 
 export default async function GamesPage() {
