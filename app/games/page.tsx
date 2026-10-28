@@ -417,6 +417,14 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg",
     tag: "غرب أمريكي ملحمي وعالم مفتوح فائق الواقعية",
   },
+  "Sekiro: Shadows Die Twice": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg",
+    tag: "أكشن ساموراي وتفادي سيوف وقتال زعماء أسطوري",
+  },
+  "Hollow Knight": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg",
+    tag: "مترويدفينيا واستكشاف وقتال حشرات ملحمي",
+  },
 };
 
 export default async function GamesPage() {
