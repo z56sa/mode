@@ -315,7 +315,7 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   },
   "Stardew Valley": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",
-    tag: "محاكاة زراعة واستكشاف ومجتمع",
+    tag: "زراعة ومجتمع ريفي واستكشاف كهوف",
   },
   "The Witcher 3: Wild Hunt": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg",
@@ -345,9 +345,17 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg",
     tag: "محاكاة مستعمرة وقصص ذكاء اصطناعي وبقاء",
   },
+  "Barotrauma": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/602960/header.jpg",
+    tag: "أعماق محيط قمر أوروبا وغواصات عسكرية",
+  },
+  "Kenshi": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg",
+    tag: "ساندبوكس وحرية مطلقة في عالم قاحل وقاسٍ",
+  },
   "Euro Truck Simulator 2": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
-    tag: "محاكاة شاحنات وطرق سريعة وواقعية القيادة",
+    tag: "شاحنات وطرق سريعة وواقعية القيادة الأوروبية",
   },
   "Cities: Skylines": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/255710/header.jpg",
@@ -368,14 +376,6 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
   "Red Dead Redemption 2": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg",
     tag: "غرب أمريكي ملحمي وعالم مفتوح فائق الواقعية",
-  },
-  "Kenshi": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg",
-    tag: "بقاء وساندبوكس وحرية مطلقة في عالم قاسٍ",
-  },
-  "Barotrauma": {
-    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/602960/header.jpg",
-    tag: "رعب أعماق محيط قمر أوروبا ومحاكاة غواصة",
   },
 };
 
@@ -493,7 +493,16 @@ export default async function GamesPage() {
                     fontWeight: "600",
                   }}
                 >
-                  {genreLabels[item.genre] ?? item.genre} · {asset.tag}
+                  {(() => {
+                    const genreName = genreLabels[item.genre] ?? item.genre;
+                    const tag = asset.tag;
+                    if (!tag) return genreName;
+                    // If tag already includes or starts with genreName, don't repeat
+                    if (tag.includes(genreName) || genreName.includes(tag)) {
+                      return tag;
+                    }
+                    return `${genreName} · ${tag}`;
+                  })()}
                 </span>
                 <h3
                   style={{
