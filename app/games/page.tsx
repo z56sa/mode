@@ -425,6 +425,34 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg",
     tag: "مترويدفينيا واستكشاف وقتال حشرات ملحمي",
   },
+  "Dark Souls III": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg",
+    tag: "سولز لايك وتحدي ملحمي وقتال رماد وعوالم مظلمة",
+  },
+  "Fallout: New Vegas": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/22380/header.jpg",
+    tag: "تقمّص أدوار كلاسيكي وحروب فصائل صحراء موهافي",
+  },
+  "S.T.A.L.K.E.R.: Anomaly": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/4500/header.jpg",
+    tag: "بقاء واقعي ورعب استكشاف منطقة تشيرنوبل",
+  },
+  "Starfield": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1716740/header.jpg",
+    tag: "استكشاف فضاء وبناء سفن ومستعمرات كوكبية",
+  },
+  "Hogwarts Legacy": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg",
+    tag: "عالم سحري وطيران مكانس ومغامرات هوجورتس",
+  },
+  "Payday 2": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/218620/header.jpg",
+    tag: "سطو مسلح تعاوني وسرقة بنوك تكتيكية",
+  },
+  "Mount & Blade: Warband": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/48700/header.jpg",
+    tag: "حروب قرون وسطى كلاسيكية ومعارك فرسان كبرى",
+  },
 };
 
 export default async function GamesPage() {
