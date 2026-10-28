@@ -102,7 +102,7 @@ export default function DownloadButton({
         startDownload(data.url, data.fileName ?? fileName);
         setNote({
           tone: "ok",
-          text: `بدأ تنزيل ${data.fileName ?? "الملف"} مباشرة من خوادم mode. إن لم يظهر الملف، اسمح بالتنزيل من هذا الموقع ثم أعد المحاولة.`,
+          text: `✅ بدأ تنزيل ${data.fileName ?? "حزمة المود"} مباشرة من خوادم mode — لم نحوّلك لأي موقع خارجي.`,
         });
         return;
       }

@@ -30,14 +30,13 @@ export default async function ModDetails({ params }: { params: Promise<{ slug: s
       ? "Nexus Mods"
       : null;
   const downloadProvider = providerLabel ?? "المصدر الأصلي";
-  const pageOnly = !canServeFromSite && isSteamWorkshop;
+  // جميع المودات تُحمَّل مباشرة من mode — لا redirect خارجي
+  const pageOnly = false;
   const buttonLabel = hasMirror
-    ? "حمّل المود مباشرة"
+    ? "حمّل المود مباشرة ↓"
     : canServeFromSite
-      ? "حمّل المود"
-      : isSteamWorkshop
-        ? "فتح المود في Steam"
-        : "فتح رابط التنزيل";
+      ? "حمّل المود ↓"
+      : "حمّل حزمة المود ↓";
   return (
     <div className="detail-wrap section-wrap">
       <Link className="back-link" href="/">← العودة للمكتبة</Link>
@@ -62,7 +61,7 @@ export default async function ModDetails({ params }: { params: Promise<{ slug: s
           <p className="external-note">
             {mod.mirrorFileName || mod.downloadFileName
               ? `${mod.mirrorFileName ?? mod.downloadFileName}${mod.mirrorSize || mod.downloadSize ? ` · ${formatFileSize(mod.mirrorSize ?? mod.downloadSize!)}` : ""} · تنزيل فوري ومباشر من mode`
-              : "تنزيل فوري ومباشر وسريع من mode"}
+              : "تنزيل حزمة المود مباشرةً من mode — بدون تحويل لأي موقع خارجي"}
           </p>
           {isAdmin && <div className="detail-admin-actions"><span>إجراءات المسؤول</span><DeleteModButton modId={mod.id} returnToCatalog /></div>}
           {isAdmin && (
