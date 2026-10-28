@@ -158,6 +158,22 @@ const REAL_GAME_ASSETS: Record<string, { image: string; tag: string }> = {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1432860/header.jpg",
     tag: "محاكاة زراعة وعالم سحري",
   },
+  "Backpack Hero": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1970580/header.jpg",
+    tag: "تنظيم حقيبة ومغامرات روغلايك",
+  },
+  "Dice Kingdoms": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2026850/header.jpg",
+    tag: "استراتيجية نرد وبناء ممالك",
+  },
+  "Trash Day": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/380530/header.jpg",
+    tag: "أكشن وحلقة زمنية غامضة",
+  },
+  "Crawl": {
+    image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/293780/header.jpg",
+    tag: "قتال زنزانات متعدد وتحدي الأصدقاء",
+  },
   "Core Keeper": {
     image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1621690/header.jpg",
     tag: "تعدين وبقاء واستكشاف كهوف",
