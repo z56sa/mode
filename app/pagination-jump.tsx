@@ -17,6 +17,7 @@ interface PaginationJumpProps {
 export default function PaginationJump({ currentPage, pageCount, filters }: PaginationJumpProps) {
   const router = useRouter();
   const [inputVal, setInputVal] = useState(String(currentPage));
+  const [loading, setLoading] = useState(false);
 
   function buildUrl(page: number) {
     const params = new URLSearchParams();
@@ -26,7 +27,7 @@ export default function PaginationJump({ currentPage, pageCount, filters }: Pagi
     if (filters.genre) params.set("genre", filters.genre);
     if (page > 1) params.set("page", String(page));
     const s = params.toString();
-    return s ? `/?${s}` : "/";
+    return s ? `/?${s}#catalog` : "/#catalog";
   }
 
   function handleJump(e: React.FormEvent) {
@@ -34,7 +35,9 @@ export default function PaginationJump({ currentPage, pageCount, filters }: Pagi
     const p = parseInt(inputVal, 10);
     if (isNaN(p)) return;
     const targetPage = Math.max(1, Math.min(pageCount, p));
-    router.push(buildUrl(targetPage));
+    setLoading(true);
+    // انتقال مباشر وسريع مع تفريغ الذاكرة المؤقتة للـ navigation
+    window.location.href = buildUrl(targetPage);
   }
 
   return (
@@ -53,8 +56,8 @@ export default function PaginationJump({ currentPage, pageCount, filters }: Pagi
         aria-label="رقم الصفحة المطلوب الانتقال إليها"
       />
       <span className="pagination-jump-text">من {pageCount.toLocaleString("ar-EG")}</span>
-      <button type="submit" className="pagination-jump-btn">
-        انتقال
+      <button type="submit" className="pagination-jump-btn" disabled={loading}>
+        {loading ? "..." : "انتقال"}
       </button>
     </form>
   );
