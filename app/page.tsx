@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { genreLabels, getCatalogOptions, getPublishedModCount, getPublishedMods, isGalleryImage } from "@/lib/db";
 import PaginationJump from "./pagination-jump";
+import ModCardImage from "./mod-card-image";
 
 type Props = { searchParams: Promise<{ q?: string; game?: string; category?: string; genre?: string; page?: string }> };
 
@@ -75,11 +76,13 @@ export default async function Home({ searchParams }: Props) {
             <div className="mod-grid">
               {mods.map((mod, index) => (
                 <Link className="mod-card" href={`/mods/${encodeURIComponent(mod.slug)}`} key={mod.id}>
-                  <div className={`mod-art mod-art-${index % 4} ${isGalleryImage(mod.imageUrl) ? "has-gallery" : "has-icon"}`}>
-                    {mod.imageUrl && <img className={`mod-image ${isGalleryImage(mod.imageUrl) ? "mod-image-gallery" : "mod-image-icon"}`} src={mod.imageUrl} alt="" loading="lazy" />}
-                    {!mod.imageUrl && <><span className="art-orb" /><span className="art-letter">{mod.game.slice(0, 1)}</span></>}
-                    <span className="art-category">{mod.category}</span>
-                  </div>
+                  <ModCardImage
+                    src={mod.imageUrl}
+                    game={mod.game}
+                    category={mod.category}
+                    index={index}
+                    isGallery={isGalleryImage(mod.imageUrl)}
+                  />
                   <div className="mod-card-body">
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
                       <span className="mod-game">{mod.game} · {genreLabels[mod.gameGenre] ?? mod.gameGenre}</span>
