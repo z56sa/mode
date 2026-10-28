@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateModCode } from "@/lib/ai-mod-helper";
+import { generateSmartModCode } from "@/lib/smart-code-generator";
 import { smartSearchMods } from "@/lib/smart-search";
 
 export async function POST(req: NextRequest) {
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       if (!idea.trim()) {
         return NextResponse.json({ error: "اكتب فكرة المود المراد توليد كوده." }, { status: 400 });
       }
-      const result = generateModCode(idea, gameType);
+      const result = generateSmartModCode(idea, gameType);
       return NextResponse.json({ success: true, result });
     }
 

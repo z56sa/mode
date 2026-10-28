@@ -23,6 +23,7 @@ interface GeneratedResult {
   fileName: string;
   code: string;
   installationGuide: string[];
+  explanation?: string;
 }
 
 export default function AiHelperPage() {
@@ -289,8 +290,13 @@ export default function AiHelperPage() {
             <div style={{ marginTop: "1.5rem", padding: "1.5rem", borderRadius: "14px", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.02)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                 <div>
-                  <h3 style={{ margin: 0, fontSize: "1.2rem" }}>{generatedCode.title}</h3>
-                  <span style={{ fontSize: "0.85rem", opacity: 0.7 }}>الملف: {generatedCode.fileName} ({generatedCode.framework})</span>
+                  <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#34d399" }}>{generatedCode.title}</h3>
+                  <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>الملف: <code>{generatedCode.fileName}</code> ({generatedCode.framework})</span>
+                  {generatedCode.explanation && (
+                    <p style={{ margin: "0.5rem 0 0", fontSize: "0.95rem", color: "#e2e8f0" }}>
+                      💡 {generatedCode.explanation}
+                    </p>
+                  )}
                 </div>
                 <button
                   type="button"
