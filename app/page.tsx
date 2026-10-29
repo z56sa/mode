@@ -2,6 +2,7 @@ import Link from "next/link";
 import { genreLabels, getCatalogOptions, getPublishedModCount, getPublishedMods, isGalleryImage } from "@/lib/db";
 import PaginationJump from "./pagination-jump";
 import ModCardImage from "./mod-card-image";
+import IntegratedSearch from "./integrated-search";
 
 type Props = { searchParams: Promise<{ q?: string; game?: string; category?: string; genre?: string; page?: string }> };
 
@@ -54,23 +55,19 @@ export default async function Home({ searchParams }: Props) {
             <h2>ماذا ستضيف للعبتك؟</h2>
           </div>
           <div style={{ display: "flex", gap: "0.8rem", alignItems: "center" }}>
-            <Link
-              href="/ai-helper"
-              className="button button-outline"
-              style={{ fontSize: "0.85rem", padding: "0.4rem 0.9rem", borderColor: "rgba(16, 185, 129, 0.4)", color: "#10b981" }}
-            >
-              🤖 البحث الذكي بالفكرة
-            </Link>
             <span className="result-count">{totalMods} مود</span>
           </div>
         </div>
-        <form className="filters" action="/" method="get">
-          <label className="search-field"><span aria-hidden="true">⌕</span><input type="search" name="q" defaultValue={filters.q} placeholder="ابحث عن مود أو لعبة..." /></label>
-          <label className="select-field"><span className="sr-only">اللعبة</span><select name="game" defaultValue={filters.game || ""}><option value="">كل الألعاب</option>{games.map((game) => <option key={game}>{game}</option>)}</select></label>
-          <label className="select-field"><span className="sr-only">نوع اللعبة</span><select name="genre" defaultValue={filters.genre || ""}><option value="">كل الأنواع</option>{genres.map((genre) => <option key={genre} value={genre}>{genreLabels[genre] ?? genre}</option>)}</select></label>
-          <label className="select-field"><span className="sr-only">التصنيف</span><select name="category" defaultValue={filters.category || ""}><option value="">كل التصنيفات</option>{categories.map((category) => <option key={category}>{category}</option>)}</select></label>
-          <button className="button button-dark" type="submit">بحث <span aria-hidden="true">↗</span></button>
-        </form>
+        <IntegratedSearch
+          initialQuery={filters.q || ""}
+          initialGame={filters.game || ""}
+          initialGenre={filters.genre || ""}
+          initialCategory={filters.category || ""}
+          games={games}
+          genres={genres}
+          categories={categories}
+          genreLabels={genreLabels}
+        />
         {mods.length ? (
           <>
             <div className="mod-grid">

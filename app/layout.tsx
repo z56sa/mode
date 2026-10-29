@@ -39,7 +39,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
               <Link href="/">استكشف المودات</Link>
               <Link href="/games">الألعاب المتوفرة</Link>
               <Link href="/crash-detector">كاشف الأخطاء 🛡️</Link>
-              <Link href="/ai-helper">المساعد الذكي 🤖</Link>
               <Link href="/create-mod">اصنع مودك</Link>
               <Link href="/submit">أضف مودًا</Link>
               {isAdmin && <Link className="admin-nav-link" href="/admin">لوحة التحكم</Link>}
