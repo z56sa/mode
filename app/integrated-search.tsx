@@ -111,8 +111,11 @@ export default function IntegratedSearch({
         </select>
       </label>
 
-      <button className="button button-dark" type="submit">
-        {isAiMode ? "تحليل وبحث ✨" : "بحث ↗"}
+      <button
+        className={isAiMode ? "button ai-submit-btn" : "button button-dark"}
+        type="submit"
+      >
+        {isAiMode ? "✨ تحليل وبحث" : "بحث ↗"}
       </button>
     </form>
   );

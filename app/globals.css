@@ -119,3 +119,24 @@ button,a{-webkit-tap-highlight-color:transparent}
   border-radius:10px;
   white-space:nowrap;
 }
+
+/* زر تحليل وبحث — الوضع الذكي */
+.ai-submit-btn{
+  background:linear-gradient(135deg,#10b981,#059669);
+  color:#fff;
+  border:none;
+  font-weight:700;
+  letter-spacing:0.02em;
+  box-shadow:0 0 14px rgba(16,185,129,0.45);
+  animation:ai-btn-pulse 2s ease-in-out infinite;
+  white-space:nowrap;
+}
+.ai-submit-btn:hover{
+  background:linear-gradient(135deg,#059669,#047857);
+  box-shadow:0 0 22px rgba(16,185,129,0.65);
+  transform:translateY(-1px);
+}
+@keyframes ai-btn-pulse{
+  0%,100%{box-shadow:0 0 14px rgba(16,185,129,0.45);}
+  50%{box-shadow:0 0 26px rgba(16,185,129,0.75);}
+}
