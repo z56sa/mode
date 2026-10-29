@@ -96,3 +96,26 @@ button,a{-webkit-tap-highlight-color:transparent}
   color:#041810;
   border-color:#10b981;
 }
+
+.ai-search-banner{
+  background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.3);
+  border-radius:8px;
+  padding:10px 16px;
+  margin-bottom:16px;
+  font-size:13px;
+  color:#34d399;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.ai-search-banner small{
+  font-size:11px;
+  opacity:0.7;
+  background:rgba(16,185,129,0.15);
+  padding:2px 8px;
+  border-radius:10px;
+  white-space:nowrap;
+}

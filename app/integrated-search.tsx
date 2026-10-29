@@ -8,6 +8,7 @@ interface IntegratedSearchProps {
   initialGame?: string;
   initialGenre?: string;
   initialCategory?: string;
+  initialAiMode?: boolean;
   games: string[];
   genres: string[];
   categories: string[];
@@ -19,6 +20,7 @@ export default function IntegratedSearch({
   initialGame = "",
   initialGenre = "",
   initialCategory = "",
+  initialAiMode = false,
   games,
   genres,
   categories,
@@ -29,7 +31,7 @@ export default function IntegratedSearch({
   const [game, setGame] = useState(initialGame);
   const [genre, setGenre] = useState(initialGenre);
   const [category, setCategory] = useState(initialCategory);
-  const [isAiMode, setIsAiMode] = useState(false);
+  const [isAiMode, setIsAiMode] = useState(initialAiMode);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
