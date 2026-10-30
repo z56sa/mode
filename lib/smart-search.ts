@@ -1,4 +1,5 @@
-import { getDb, GameMod } from "./db";
+import { getDb } from "./db";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export interface SemanticSearchResult {
   interpretedQuery: string;
@@ -19,138 +20,94 @@ export interface SemanticSearchResult {
   }>;
 }
 
-// Arabic to English semantic dictionary for gaming terms
-const ARABIC_CONCEPT_DICTIONARY: Array<{
-  arabicKeywords: string[];
-  englishTerms: string[];
+// ===== Gemini: يفهم الفكرة ويرجع كلمات بحث إنجليزية =====
+async function extractSearchTermsWithGemini(query: string): Promise<{
+  terms: string[];
   category: string;
   explanation: string;
-  reason: string;
-}> = [
-  {
-    arabicKeywords: ["طير", "يطير", "طيران", "طياره", "سفينه", "سفينة", "فضاء", "فلاي", "مركبه", "مركبة", "سياره", "سيارة", "سواقه", "سواقة", "قياده", "قيادة"],
-    englishTerms: ["fly", "flight", "plane", "vehicle", "car", "drive", "ship", "space", "simfphys", "traffic"],
-    category: "مركبات وتنقل وطيران",
-    explanation: "المودات الخاصة بالطيران، قيادة المركبات، السفن، والتحليق:",
-    reason: "يتيح قيادة أو طيران أو تحكم متقدم في المركبات"
-  },
-  {
-    arabicKeywords: ["سلاح", "اسلحه", "أسلحة", "مسدس", "فرد", "رشاش", "بندقية", "طلقات", "رصاص", "قتال", "حرب", "معارك", "دروع", "دم"],
-    englishTerms: ["weapon", "gun", "arm", "rifle", "pistol", "combat", "battle", "war", "damage", "bullet", "armor", "sword"],
-    category: "أسلحة ومعارك",
-    explanation: "المودات التي تضيف أو تطور الأسلحة، الرصاص، والأنظمة القتالية:",
-    reason: "يضيف ترسانة أسلحة واقعية وأنظمة قتال متطورة"
-  },
-  {
-    arabicKeywords: ["سحر", "شعوذه", "شعوذة", "طاقه", "طاقة", "تعاويذ", "تعويذة", "مانا", "خوارق"],
-    englishTerms: ["magic", "spell", "mana", "wizard", "sorcery", "apocalypse", "enchant"],
-    category: "سحر وقدرات خارقة",
-    explanation: "المودات المتعلقة بتعاويذ السحر والقوى الخارقة:",
-    reason: "يمنحك تعاويذ سحرية وقدرات خارقة جديدة"
-  },
-  {
-    arabicKeywords: ["صناديق", "صندوق", "ترتيب", "تخزين", "مخزن", "تنظيم", "اغراض", "أغراض", "انفنتوري", "حقيبه", "حقيبة"],
-    englishTerms: ["storage", "inventory", "chest", "organize", "sort", "magic storage", "weight", "carry"],
-    category: "تخزين وتنظيم الحقيبة",
-    explanation: "المودات التي تساعد في ترتيب الصناديق وتوسيع مساحة التخزين:",
-    reason: "يسهّل إدارة الموارد وترتيب الصناديق بشكل تلقائي"
-  },
-  {
-    arabicKeywords: ["غش", "فلوس", "ذهب", "فلوس لا نهائية", "شيت", "تريلر", "منيو", "خلود", "دم لا نهائي", "قائمة تحكم", "قائمه"],
-    englishTerms: ["cheat", "menu", "trainer", "money", "gold", "sandbox", "unlimited", "godmode"],
-    category: "أدوات تحكم وغش وتسهيل",
-    explanation: "مودات التحكم، الغش، وتسهيل تجربة اللعب وإضافة الموارد:",
-    reason: "يمنحك لوحة تحكم كاملة لإضافة الذهب وتعديل الخصائص بحرية"
-  },
-  {
-    arabicKeywords: ["خريطه", "خريطة", "ماب", "ميني ماب", "رادار", "طرق", "مواقع"],
-    englishTerms: ["map", "minimap", "radar", "navigation", "gps", "waypoint", "location"],
-    category: "خرائط وملاحة",
-    explanation: "مودات الخرائط والملاحة والرادار المصغر:",
-    reason: "يعرض خريطة مصغرة ورادار لتسهيل الملاحة والاستكشاف"
-  },
-  {
-    arabicKeywords: ["جرافيكس", "جرافيك", "رسوم", "رسومات", "واقعيه", "واقعية", "اضاءه", "إضاءة", "طقس", "جمال", "دقة", "4k"],
-    englishTerms: ["graphic", "visual", "weather", "texture", "hd", "rework", "enb", "shader", "light", "realistic"],
-    category: "تحسين الجرافيكس والطقس",
-    explanation: "مودات تحسين المظهر الرسومي، الطقس، والإضاءة الواقعية:",
-    reason: "يرفع دقة الرسوميات ويضيف مؤثرات بصرية وطقس واقعي"
-  },
-  {
-    arabicKeywords: ["اصوات", "أصوات", "صوت", "موسيقى", "اغاني", "أغاني", "ساوند"],
-    englishTerms: ["sound", "audio", "music", "fix", "track", "voice", "radio"],
-    category: "أصوات ومؤثرات صوتية",
-    explanation: "مودات تعديل وتحسين المؤثرات الصوتية والموسيقى:",
-    reason: "يحسن جودة ونقاء المؤثرات الصوتية والموسيقى التصويرية"
-  },
-  {
-    arabicKeywords: ["وحوش", "اعداء", "أعداء", "زومبي", "بقاء", "صعوبة", "تحدي", "مرعب", "رعب"],
-    englishTerms: ["zombie", "horror", "monster", "enemy", "survival", "difficult", "hardcore", "creature"],
-    category: "بقاء ورعب وتحدي",
-    explanation: "مودات البقاء وإضافة أعداء وتحديات جديدة:",
-    reason: "يضيف عناصر رعب وبقاء وتحديات جديدة للعبة"
-  }
-];
+}> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error("GEMINI_API_KEY not set");
 
-export async function smartSearchMods(query: string, limit: number = 24): Promise<SemanticSearchResult> {
-  const normalized = query.toLowerCase().trim();
+  const genAI = new GoogleGenerativeAI(apiKey);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+  const prompt = `أنت محلل بحث متخصص في مودات ألعاب الفيديو. المستخدم يصف مودًا بالعربية.
+
+فكرة المستخدم: "${query}"
+
+أرجع JSON بالشكل التالي فقط (بدون أي نص إضافي):
+{
+  "terms": ["term1", "term2", "term3", "term4", "term5"],
+  "category": "اسم الفئة بالعربية",
+  "explanation": "جملة قصيرة تشرح ما فهمته من الفكرة"
+}
+
+قواعد:
+- terms: 5-8 كلمات إنجليزية للبحث في قاعدة بيانات المودات (اسماء مودات شائعة، تقنيات، ميزات)
+- category: فئة المود بالعربية (مثل: أسلحة، جرافيكس، شخصيات، خرائط، ...)
+- explanation: جملة عربية قصيرة تشرح ما فهمته`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().trim();
+    // استخرج JSON من الرد
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("No JSON in response");
+    const parsed = JSON.parse(jsonMatch[0]);
+    return {
+      terms: Array.isArray(parsed.terms) ? parsed.terms.slice(0, 8) : [query],
+      category: parsed.category || "عام",
+      explanation: parsed.explanation || `نتائج البحث عن: ${query}`,
+    };
+  } catch {
+    // Fallback: كلمات مباشرة من الجملة
+    return {
+      terms: query.split(/\s+/).filter(w => w.length > 1).slice(0, 6),
+      category: "عام",
+      explanation: `نتائج البحث عن: ${query}`,
+    };
+  }
+}
+
+export async function smartSearchMods(query: string, limit: number = 48): Promise<SemanticSearchResult> {
   const db = await getDb();
 
-  // Find matching concept
-  let matchedConcept = ARABIC_CONCEPT_DICTIONARY.find(c =>
-    c.arabicKeywords.some(kw => normalized.includes(kw))
-  );
+  // استخدام Gemini لفهم الفكرة
+  const { terms, category, explanation } = await extractSearchTermsWithGemini(query);
 
-  // If no direct concept match, split words and try partial match
-  if (!matchedConcept) {
-    const words = normalized.split(/\s+/).filter(w => w.length > 2);
-    matchedConcept = ARABIC_CONCEPT_DICTIONARY.find(c =>
-      c.arabicKeywords.some(kw => words.some(w => kw.includes(w) || w.includes(kw)))
-    );
-  }
-
-  // Build SQL query based on concept or direct words
-  let searchTerms: string[] = [];
-  let category = "عام";
-  let explanation = "نتائج البحث عن: " + query;
-  let reason = "يطابق الكلمات المطلوبة في البحث";
-
-  if (matchedConcept) {
-    category = matchedConcept.category;
-    explanation = matchedConcept.explanation;
-    reason = matchedConcept.reason;
-    searchTerms = matchedConcept.englishTerms;
-  } else {
-    // Fallback: use Arabic tokens and translated guesses
-    searchTerms = normalized.split(/\s+/).filter(w => w.length > 1);
-  }
-
-  // Construct SQL matching with status='approved'
+  // بناء SQL مع المصطلحات
   const conditions: string[] = ["status = 'approved'"];
   const orClauses: string[] = [];
   const args: any[] = [];
 
-  // Also include the original query in LIKE
+  // البحث بالجملة الأصلية دائماً
   orClauses.push("title LIKE ? OR description LIKE ?");
   args.push(`%${query}%`, `%${query}%`);
 
-  for (const term of searchTerms.slice(0, 8)) {
+  // البحث بكل مصطلح من Gemini
+  for (const term of terms.slice(0, 8)) {
     orClauses.push("title LIKE ? OR description LIKE ? OR category LIKE ?");
     args.push(`%${term}%`, `%${term}%`, `%${term}%`);
   }
 
   conditions.push(`(${orClauses.join(" OR ")})`);
 
+  const firstTerm = terms[0] || query;
   const sql = `
     SELECT id, title, slug, game, game_genre, category, description, image_url, author, version
     FROM mods
     WHERE ${conditions.join(" AND ")}
-    ORDER BY 
-      CASE WHEN title LIKE ? THEN 1 ELSE 2 END,
+    ORDER BY
+      CASE WHEN title LIKE ? THEN 0
+           WHEN title LIKE ? THEN 1
+           ELSE 2 END,
       id DESC
     LIMIT ?
   `;
-  args.unshift(`%${searchTerms[0] || query}%`);
+
+  // أولوية: المصطلح الأول من Gemini، ثم الجملة الأصلية
+  args.unshift(`%${firstTerm}%`, `%${query}%`);
   args.push(limit);
 
   try {
@@ -165,24 +122,24 @@ export async function smartSearchMods(query: string, limit: number = 24): Promis
       imageUrl: row.image_url ? String(row.image_url) : null,
       author: String(row.author || "المجتمع"),
       version: row.version ? String(row.version) : null,
-      matchReason: reason
+      matchReason: explanation,
     }));
 
     return {
       interpretedQuery: query,
       category,
-      matchedKeywords: matchedConcept ? matchedConcept.arabicKeywords.slice(0, 5) : [query],
+      matchedKeywords: terms.slice(0, 5),
       explanation,
-      mods
+      mods,
     };
   } catch (err) {
     console.error("Smart search DB error:", err);
     return {
       interpretedQuery: query,
       category,
-      matchedKeywords: [query],
+      matchedKeywords: terms,
       explanation,
-      mods: []
+      mods: [],
     };
   }
 }

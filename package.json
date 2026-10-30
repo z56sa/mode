@@ -15,6 +15,7 @@
     "test:download": "node --experimental-strip-types --test scripts/download-sources.test.mjs"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@libsql/client": "^0.18.0",
     "@uploadthing/react": "^7.3.3",
     "next": "^15.4.6",
